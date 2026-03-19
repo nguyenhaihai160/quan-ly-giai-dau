@@ -535,6 +535,7 @@
     .court-chip{display:flex;align-items:center;gap:8px;background:#f5f7f8;border:1px solid #d6e0e4;border-radius:10px;padding:6px 10px;font-weight:800;color:#345}
     .court-chip input{width:auto;min-height:auto;margin:0}
     .status-select{min-width:170px;width:auto}
+    .match-status-dropdown{min-width:138px;width:auto;padding:7px 10px;border:1px solid #cfe2d5;border-radius:10px;background:#fff;color:#245a46;font-weight:700;font-size:12px}
     .schedule-board{overflow:auto;border:1px solid #cfdee3;border-radius:18px;background:#edf4f6;box-shadow:0 6px 18px rgba(0,0,0,.05)}
     .schedule-grid{display:grid;min-width:1020px}
     .schedule-head-cell{background:#d95a00;color:#fff;padding:12px 10px;font-weight:900;text-align:center;border-right:2px solid rgba(255,255,255,.9)}
@@ -1033,7 +1034,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'quan_ly_giai_dau_pro_tabs_v11_schedule_board_standings';
+    const STORAGE_KEY = 'quan_ly_giai_dau_pro_tabs_v13_knockout_formula';
     const ASSET_STORAGE_KEY = 'quan_ly_giai_dau_assets_v2';
     let matchAutoId = 0;
 
@@ -1045,6 +1046,7 @@
       groups: [],
       schedule: [],
       knockoutTree: null,
+      matchStatuses: {},
       activeTab: 'tabInfo',
       tournamentInfo: {
         title: '',
@@ -1108,6 +1110,62 @@
 
     function hasNumericScore(a, b){
       return Number.isFinite(Number(a)) && Number.isFinite(Number(b));
+    }
+
+    function getScheduleMatchKey(match){
+      if(match?.matchId) return `ko_${match.matchId}`;
+      return `gr_${normalizeName(match?.phase || '')}__${normalizeName(match?.teamA || '')}__${normalizeName(match?.teamB || '')}`;
+    }
+
+    function getStatusText(status){
+      const map = {
+        waiting:'Chờ vòng trước',
+        pending:'Chờ đấu',
+        live:'Đang đấu',
+        finished:'Đã kết thúc',
+        bye:'BYE / Tự động'
+      };
+      return map[status] || 'Chờ đấu';
+    }
+
+    function findGroupResultByMatch(match){
+      if(state.format !== 'groups' || !Array.isArray(state.groups)) return null;
+      for(let g = 0; g < state.groups.length; g++){
+        const group = state.groups[g] || [];
+        for(let i = 0; i < group.length; i++){
+          for(let j = i + 1; j < group.length; j++){
+            const A = normalizeName(group[i]?.name);
+            const B = normalizeName(group[j]?.name);
+            const mA = normalizeName(match?.teamA);
+            const mB = normalizeName(match?.teamB);
+            if((A === mA && B === mB) || (A === mB && B === mA)){
+              return state.results[`group_${g}_${i}_${j}`] || null;
+            }
+          }
+        }
+      }
+      return null;
+    }
+
+    function getMatchStatus(match){
+      const key = getScheduleMatchKey(match);
+      const saved = state.matchStatuses?.[key];
+      if(match?.autoAdvance) return 'bye';
+      if(saved) return saved;
+      if(match?.matchId){
+        if(hasNumericScore(match.scoreA, match.scoreB)) return 'finished';
+        return match.ready ? 'pending' : 'waiting';
+      }
+      return findGroupResultByMatch(match) ? 'finished' : 'pending';
+    }
+
+    function updateMatchStatus(selectEl){
+      const key = selectEl?.dataset?.matchKey;
+      if(!key) return;
+      if(!state.matchStatuses) state.matchStatuses = {};
+      state.matchStatuses[key] = selectEl.value;
+      saveState();
+      renderSchedule();
     }
 
     function toInputDateTimeValue(date){
@@ -1540,6 +1598,18 @@
       return !!resolveWinner(node);
     }
 
+    function countRealPlayers(node){
+      if(!node) return 0;
+      if(node.type === 'leaf') return node.player ? 1 : 0;
+      return countRealPlayers(node.left) + countRealPlayers(node.right);
+    }
+
+    function countRealPlayers(node){
+      if(!node) return 0;
+      if(node.type === 'leaf') return node.player ? 1 : 0;
+      return countRealPlayers(node.left) + countRealPlayers(node.right);
+    }
+
     function nextPowerOfTwo(n){
       let p = 1;
       while(p < n) p *= 2;
@@ -1561,31 +1631,30 @@
     }
 
     function buildPriorityByeTree(players){
-      const entries = players.map(player => makeLeaf({ ...player }));
-      const makeByeLeaf = () => makeLeaf(null);
+      if(!players?.length) return null;
 
-      function buildRound(items){
+      const normalizedSize = nextPowerOfTwo(players.length);
+      const byeCount = normalizedSize - players.length;
+      const slots = [];
+
+      players.forEach((player, index) => {
+        slots.push(makeLeaf({ ...player }));
+        if(index < byeCount) slots.push(makeLeaf(null));
+      });
+
+      function buildFromSlots(items){
         if(items.length === 1) return items[0];
 
         const nextRound = [];
-        let startIndex = 0;
-
-        if(items.length % 2 === 1){
-          nextRound.push(makeMatch(items[0], makeByeLeaf()));
-          startIndex = 1;
+        for(let i = 0; i < items.length; i += 2){
+          const left = items[i] || makeLeaf(null);
+          const right = items[i + 1] || makeLeaf(null);
+          nextRound.push(makeMatch(left, right));
         }
-
-        for(let i = startIndex; i < items.length; i += 2){
-          const left = items[i];
-          const right = items[i + 1];
-          if(left && right) nextRound.push(makeMatch(left, right));
-          else if(left) nextRound.push(makeMatch(left, makeByeLeaf()));
-        }
-
-        return buildRound(nextRound);
+        return buildFromSlots(nextRound);
       }
 
-      return buildRound(entries);
+      return buildFromSlots(slots);
     }
 
     function collectRoundNodesInOrder(node, targetRound, arr = []){
@@ -1647,10 +1716,12 @@
     }
 
     function getDisplayCodeMap(layout){
-      const ordered = [...layout.allMatches].sort((a, b) => {
-        if(a.round !== b.round) return a.round - b.round;
-        return layout.positions[a.id].y - layout.positions[b.id].y;
-      });
+      const ordered = [...layout.allMatches]
+        .filter(node => countRealPlayers(node.left) > 0 && countRealPlayers(node.right) > 0)
+        .sort((a, b) => {
+          if(a.round !== b.round) return a.round - b.round;
+          return layout.positions[a.id].y - layout.positions[b.id].y;
+        });
       const map = {};
       ordered.forEach((node, index) => { map[node.id] = String(index + 1).padStart(2, '0'); });
       return map;
@@ -2059,6 +2130,8 @@
       if(a === b){ alert('Loại trực tiếp không thể hòa.'); return; }
 
       state.results[`ko_${matchId}`] = { a, b };
+      if(!state.matchStatuses) state.matchStatuses = {};
+      state.matchStatuses[`ko_${matchId}`] = 'finished';
       clearAncestorResults(state.knockoutTree, matchId);
       saveState();
       renderBracket();
@@ -2137,6 +2210,9 @@
       if(isNaN(a) || isNaN(b)){ alert('Vui lòng nhập đủ tỉ số.'); return; }
       const key = `group_${g}_${i}_${j}`;
       state.results[key] = { a, b };
+      if(!state.matchStatuses) state.matchStatuses = {};
+      const scheduleKey = `gr_Bảng ${String.fromCharCode(65 + g)}__${normalizeName(state.groups[g][i].name)}__${normalizeName(state.groups[g][j].name)}`;
+      state.matchStatuses[scheduleKey] = 'finished';
       saveState();
       recalculateGroup(g);
       generateSchedule();
@@ -2371,6 +2447,9 @@
               ${courtNumbers.map(courtNo => `<label class="court-chip"><input type="checkbox" checked disabled> Sân ${courtNo}</label>`).join('')}
               <select class="status-select" disabled>
                 <option>Tất cả trạng thái</option>
+                <option>Chờ đấu</option>
+                <option>Đang đấu</option>
+                <option>Đã kết thúc</option>
               </select>
             </div>
           </div>
@@ -2397,8 +2476,9 @@
             const scoreB = scoreReady ? Number(m.scoreB) : '';
             const topClass = scoreReady && scoreA > scoreB ? 'win' : '';
             const bottomClass = scoreReady && scoreB > scoreA ? 'win' : '';
-            const statusClass = m.autoAdvance ? 'bye' : scoreReady ? 'done' : m.ready ? 'ready' : 'pending';
-            const statusText = m.autoAdvance ? 'BYE / Tự động' : scoreReady ? 'Đã kết thúc' : m.ready ? 'Chờ nhập tỉ số' : 'Chờ vòng trước';
+            const currentStatus = getMatchStatus(m);
+            const statusClass = currentStatus === 'finished' ? 'done' : currentStatus === 'bye' ? 'bye' : currentStatus === 'pending' || currentStatus === 'live' ? 'ready' : 'pending';
+            const statusKey = getScheduleMatchKey(m);
             html += `
               <div class="schedule-cell">
                 <div class="schedule-match-card">
@@ -2424,13 +2504,26 @@
                       <input ${m.ready ? '' : 'disabled'} type="number" id="schedScoreB_${m.matchId}" value="${scoreReady ? scoreB : ''}">
                     </div>
                     <div class="schedule-card-actions">
-                      <span class="status-pill ${statusClass}">${statusText}</span>
+                      <span class="status-pill ${statusClass}">${getStatusText(currentStatus)}</span>
+                      <select class="match-status-dropdown" data-match-key="${escapeHtml(statusKey)}" onchange="updateMatchStatus(this)" ${m.autoAdvance ? 'disabled' : ''}>
+                        ${m.autoAdvance
+                          ? '<option value="bye" selected>BYE / Tự động</option>'
+                          : `
+                            <option value="waiting" ${currentStatus === 'waiting' ? 'selected' : ''}>Chờ vòng trước</option>
+                            <option value="pending" ${currentStatus === 'pending' ? 'selected' : ''}>Chờ đấu</option>
+                            <option value="live" ${currentStatus === 'live' ? 'selected' : ''}>Đang đấu</option>
+                            <option value="finished" ${currentStatus === 'finished' ? 'selected' : ''}>Đã kết thúc</option>
+                          `}
+                      </select>
                       <button class="schedule-save-btn" ${m.ready ? '' : 'disabled'} onclick="setKnockoutWinnerFromSchedule('${m.matchId}')">Lưu tỉ số</button>
                     </div>
                   </div>
                 </div>
               </div>`;
           }else{
+            const currentStatus = getMatchStatus(m);
+            const statusClass = currentStatus === 'finished' ? 'done' : currentStatus === 'live' ? 'ready' : 'pending';
+            const statusKey = getScheduleMatchKey(m);
             html += `
               <div class="schedule-cell">
                 <div class="schedule-match-card">
@@ -2445,7 +2538,12 @@
                     <div class="schedule-team-row"><div class="schedule-team-name">${escapeHtml(m.teamB)}</div></div>
                     <div class="schedule-group-note">Nhập tỉ số ở khung <strong>Kết quả / Vòng bảng</strong> bên dưới để bảng xếp hạng tự cập nhật.</div>
                     <div class="schedule-card-actions">
-                      <span class="status-pill ready">Đang chờ kết quả</span>
+                      <span class="status-pill ${statusClass}">${getStatusText(currentStatus)}</span>
+                      <select class="match-status-dropdown" data-match-key="${escapeHtml(statusKey)}" onchange="updateMatchStatus(this)">
+                        <option value="pending" ${currentStatus === 'pending' ? 'selected' : ''}>Chờ đấu</option>
+                        <option value="live" ${currentStatus === 'live' ? 'selected' : ''}>Đang đấu</option>
+                        <option value="finished" ${currentStatus === 'finished' ? 'selected' : ''}>Đã kết thúc</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -2480,7 +2578,8 @@
         BatDau:formatVNDateTime(new Date(m.start)),
         KetThuc:formatVNDateTime(new Date(m.end)),
         BanSan:m.court,
-        CapDau:`${m.teamA} vs ${m.teamB}`
+        CapDau:`${m.teamA} vs ${m.teamB}`,
+        TrangThai:getStatusText(getMatchStatus(m))
       }));
       const standingsRows = state.format === 'knockout'
         ? buildKnockoutFinalRows().map((row, i) => ({ STT:i + 1, Hang:row.rank, DanhHieu:row.title, DoiVDV:row.teamName, GhiChu:row.note }))
