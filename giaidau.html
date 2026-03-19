@@ -412,7 +412,7 @@
       box-shadow:0 4px 12px rgba(0,0,0,.08);
     }
 
-    .bracket-canvas{position:relative;min-width:100%;min-height:300px}
+    .bracket-canvas{position:relative;min-width:max-content;min-height:300px}
 
     .round-header{
       position:absolute;top:18px;width:180px;background:#dd5d00;color:#fff;border-radius:10px;font-weight:900;
@@ -529,7 +529,7 @@
     .schedule-board-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
     .schedule-title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
     .schedule-date-pill{background:#0d8a61;color:#fff;padding:10px 14px;border-radius:12px;font-size:18px;font-weight:900;min-width:86px;text-align:center;box-shadow:0 8px 18px rgba(13,138,97,.18)}
-    .schedule-board-title{font-size:28px;font-weight:900;color:#0d6a4d;line-height:1.1}
+    .schedule-board-title{font-size:28px;font-weight:900;color:#020e69;line-height:1.1}
     .schedule-board-sub{font-size:13px;color:#666;margin-top:4px}
     .schedule-board-filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
     .court-chip{display:flex;align-items:center;gap:8px;background:#f5f7f8;border:1px solid #d6e0e4;border-radius:10px;padding:6px 10px;font-weight:800;color:#345}
@@ -538,8 +538,11 @@
     .match-status-dropdown{min-width:138px;width:auto;padding:7px 10px;border:1px solid #cfe2d5;border-radius:10px;background:#fff;color:#245a46;font-weight:700;font-size:12px}
     .schedule-board{overflow:auto;border:1px solid #cfdee3;border-radius:18px;background:#edf4f6;box-shadow:0 6px 18px rgba(0,0,0,.05)}
     .schedule-grid{display:grid;min-width:1020px}
+    .schedule-round-row{grid-column:1 / -1;display:flex;align-items:center;padding:8px 10px;background:linear-gradient(90deg,#0d6a4d,#1e8f67);border-bottom:2px solid rgba(255,255,255,.85)}
+    .schedule-round-chip{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(255,255,255,.14);color:#fff;padding:10px 14px;border-radius:12px;font-size:14px;font-weight:900;letter-spacing:.2px;box-shadow:0 6px 14px rgba(0,0,0,.12)}
+    .schedule-round-chip .muted{font-size:12px;font-weight:800;color:rgba(255,255,255,.88)}
     .schedule-head-cell{background:#d95a00;color:#fff;padding:12px 10px;font-weight:900;text-align:center;border-right:2px solid rgba(255,255,255,.9)}
-    .schedule-head-cell.slot{min-width:82px}
+    .schedule-head-cell.slot{min-width:104px}
     .schedule-slot-label{background:#f2ea27;color:#333;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:2px solid #fff;border-bottom:2px solid #fff;padding:10px;gap:4px}
     .schedule-slot-label .small{font-size:12px;color:#666;font-weight:800}
     .schedule-cell{min-height:188px;padding:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;background:#f4f8f9}
@@ -556,6 +559,11 @@
     .schedule-team-score{min-width:28px;height:28px;border-radius:999px;background:#fff;color:#d95a00;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1px rgba(217,90,0,.12)}
     .schedule-score-edit{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
     .schedule-score-edit input{width:58px;min-height:36px;text-align:center;padding:6px}
+    .schedule-datetime-edit{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}
+    .schedule-datetime-field{display:grid;gap:4px}
+    .schedule-datetime-field label{font-size:11px;font-weight:900;color:#264438;text-transform:uppercase;letter-spacing:.2px}
+    .schedule-datetime-field input{width:100%;min-height:36px;padding:6px 8px}
+    .schedule-date-save{padding:8px 12px;min-height:36px;white-space:nowrap}
     .schedule-score-sep{font-weight:900;color:#3c4b12}
     .schedule-card-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
     .schedule-save-btn{padding:8px 12px;min-height:36px}
@@ -570,6 +578,7 @@
     .result-panel h2{color:#0d6a4d;text-align:left;margin-bottom:12px}
     .result-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
     .result-status{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:#eef9f3;color:#0d6a4d;font-size:12px;font-weight:900;border:1px solid #b9dfca}
+    .schedule-green-note{color:#12b24a;font-weight:900}
     .final-standings-table th{background:#2e9be3}
     .final-standings-table .group-row td{background:#efe9ac;font-weight:900;text-align:left;color:#5a4e00}
     .rank-pill{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;border-radius:999px;padding:0 10px;font-weight:900;color:#fff}
@@ -684,6 +693,696 @@
       }
     }
 
+  
+
+    /* SPORTY COLOR THEME OVERRIDES */
+    :root{
+      --orange:#ff6a00;
+      --orange2:#ffb000;
+      --green:#d8ff34;
+      --greenText:#193800;
+      --bg:#071423;
+      --card:#f8fbff;
+      --text:#15243d;
+      --muted:#667892;
+      --shadow:0 18px 36px rgba(2,12,27,.24);
+      --line:#d8e2ef;
+    }
+
+    body{
+      background:
+        radial-gradient(circle at 12% 12%, rgba(255,106,0,.16), transparent 22%),
+        radial-gradient(circle at 88% 10%, rgba(0,195,255,.14), transparent 18%),
+        radial-gradient(circle at 80% 84%, rgba(198,255,0,.10), transparent 16%),
+        linear-gradient(180deg,#091728 0%, #0c1d32 38%, #08121e 100%);
+      color:var(--text);
+    }
+
+    .hero{
+      background:
+        linear-gradient(135deg, rgba(4,33,71,.96) 0%, rgba(11,92,164,.94) 42%, rgba(255,106,0,.96) 100%);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 22px 48px rgba(2,10,25,.35);
+    }
+
+    .hero::before{
+      background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%);
+    }
+
+    .hero::after{
+      background:radial-gradient(circle,rgba(218,255,53,.24),transparent 72%);
+    }
+
+    .page-title{
+      text-shadow:0 4px 18px rgba(0,0,0,.22);
+    }
+
+    .page-subtitle{
+      color:rgba(255,255,255,.92);
+    }
+
+    .hero-badge{
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.22);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .card,
+    .result-panel{
+      background:linear-gradient(180deg,#fbfdff 0%, #f3f8ff 100%);
+      border-left:6px solid var(--orange);
+      border-top:1px solid #d9e7f8;
+      box-shadow:0 16px 34px rgba(5,23,48,.18);
+    }
+
+    .top-tabs{
+      gap:12px;
+    }
+
+    .tab-btn{
+      background:linear-gradient(180deg,#f9fbff,#eef5ff);
+      color:#11345d;
+      border:1px solid #cfe0f8;
+      box-shadow:0 10px 24px rgba(4,32,78,.14);
+      font-weight:900;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .tab-btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+      transform:translateX(-100%);
+      transition:transform .35s ease;
+      pointer-events:none;
+    }
+
+    .tab-btn:hover::before{
+      transform:translateX(100%);
+    }
+
+    .tab-btn.active{
+      background:linear-gradient(135deg,#083d77 0%, #0d7bdc 52%, #ff6a00 100%);
+      color:#fff;
+      border-color:transparent;
+      box-shadow:0 14px 30px rgba(6,53,109,.30);
+    }
+
+    .info-pill{
+      background:linear-gradient(180deg,#ffffff,#edf6ff);
+      border:1px solid #cde0f5;
+      box-shadow:0 10px 22px rgba(7,35,75,.08);
+    }
+
+    .info-pill .label{
+      color:#56729a;
+    }
+
+    .info-pill .value{
+      color:#0e2643;
+    }
+
+    .metric-card{
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.96),rgba(237,246,255,.96));
+      border:1px solid #cfe0f5;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .metric-card::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:5px;
+      background:linear-gradient(90deg,#083d77,#0d7bdc,#1de2ff,#ff6a00,#d8ff34);
+    }
+
+    .metric-label{
+      color:#527097;
+    }
+
+    .metric-value{
+      color:#08284f;
+    }
+
+    .upload-card,
+    .footer-note{
+      background:linear-gradient(180deg,#fbfdff,#eff6ff);
+      border-color:#c9dcf4;
+    }
+
+    .upload-preview{
+      border-color:#d5e3f3;
+      background:linear-gradient(180deg,#fff,#f2f8ff);
+    }
+
+    .bracket-card{
+      background:linear-gradient(180deg,#10243c,#0a1a2f);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .bracket-stage{
+      background:
+        linear-gradient(180deg,rgba(10,29,49,.95),rgba(8,19,33,.97)),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0px, rgba(255,255,255,.045) 1px, transparent 1px, transparent 36px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0px, rgba(255,255,255,.03) 1px, transparent 1px, transparent 36px);
+      border:1px solid rgba(84,129,184,.45);
+      box-shadow:0 20px 44px rgba(0,0,0,.28);
+    }
+
+    .stage-cover{
+      background:
+        linear-gradient(135deg,rgba(5,43,90,.96) 0%, rgba(9,109,201,.90) 44%, rgba(255,106,0,.88) 100%);
+      border-bottom:1px solid rgba(255,255,255,.16);
+    }
+
+    .stage-cover::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:repeating-linear-gradient(120deg, rgba(255,255,255,.07) 0 18px, transparent 18px 36px);
+      mix-blend-mode:soft-light;
+      pointer-events:none;
+    }
+
+    .stage-side-box{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.25);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .stage-mini-pill,
+    .stage-badge{
+      background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.10));
+      border:1px solid rgba(255,255,255,.20);
+      color:#fff;
+      box-shadow:0 10px 22px rgba(0,0,0,.12);
+    }
+
+    .stage-badge{
+      font-size:13px;
+      letter-spacing:.25px;
+      text-transform:uppercase;
+    }
+
+    .round-header{
+      background:linear-gradient(135deg,#ff6a00,#ffb000);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.25);
+      box-shadow:0 8px 18px rgba(255,106,0,.26);
+      text-transform:uppercase;
+      letter-spacing:.35px;
+    }
+
+    .match-card-box{
+      background:linear-gradient(180deg,#ffffff 0%, #f0f7ff 100%);
+      border:1px solid #c8d9ee;
+      box-shadow:0 14px 30px rgba(3,17,37,.25);
+    }
+
+    .match-topbar{
+      background:linear-gradient(90deg,#082f5d 0%, #0c6ccd 62%, #16a3ff 100%);
+      border-bottom:none;
+    }
+
+    .match-code-box{
+      background:linear-gradient(135deg,#ff6a00,#ffb000);
+      color:#fff;
+      box-shadow:none;
+    }
+
+    .match-score-box{
+      background:rgba(255,255,255,.96);
+      color:#082b54;
+      border:none;
+      box-shadow:0 4px 12px rgba(5,28,61,.12);
+    }
+
+    .player-row{
+      color:#10233f;
+      font-weight:900;
+    }
+
+    .player-row.pending{
+      background:#f8fbff;
+    }
+
+    .player-row.win{
+      background:linear-gradient(135deg,#d8ff34,#9be400);
+      color:#183700;
+    }
+
+    .player-row.lose{
+      background:linear-gradient(180deg,#edf3f8,#dbe6f0);
+      color:#65778d;
+    }
+
+    .svg-path{
+      stroke:#5fe1ff;
+      stroke-width:6;
+      filter:drop-shadow(0 0 8px rgba(95,225,255,.28));
+    }
+
+    .champion-box{
+      background:linear-gradient(180deg,#fff8d9,#fff0b5 40%, #ffffff 100%);
+      border:2px solid #ffb000;
+      box-shadow:0 16px 34px rgba(255,176,0,.24);
+    }
+
+    .champion-name{
+      color:#5e3700;
+    }
+
+    .schedule-date-pill{
+      background:linear-gradient(135deg,#083d77,#0d7bdc);
+      box-shadow:0 10px 22px rgba(8,61,119,.24);
+    }
+
+    .schedule-board-title{
+      color:#ffffff;
+      text-shadow:0 4px 18px rgba(0,0,0,.16);
+    }
+
+    .schedule-board-sub{
+      color:#d3e5ff;
+    }
+
+    .court-chip{
+      background:linear-gradient(180deg,#ffffff,#eef5ff);
+      border:1px solid #c7daf4;
+      color:#11345d;
+      box-shadow:0 8px 18px rgba(8,46,98,.08);
+    }
+
+    .status-select,
+    .match-status-dropdown{
+      border-color:#bfd6f0;
+      color:#123a67;
+      background:#fff;
+    }
+
+    .schedule-board{
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg,#17304b 0%, #102338 100%);
+      box-shadow:0 18px 38px rgba(0,0,0,.28);
+    }
+
+    .schedule-head-cell{
+      background:linear-gradient(135deg,#ff6a00,#ff9800);
+      border-right:2px solid rgba(255,255,255,.18);
+      text-transform:uppercase;
+      letter-spacing:.25px;
+    }
+
+    .schedule-slot-label{
+      background:linear-gradient(180deg,#f5ff48,#d7ff22);
+      color:#17314f;
+      border-right:2px solid rgba(255,255,255,.14);
+      border-bottom:2px solid rgba(255,255,255,.14);
+      box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
+    }
+
+    .schedule-slot-label .small{
+      color:#39597b;
+    }
+
+    .schedule-cell{
+      background:linear-gradient(180deg,#173555,#12304d);
+      border-right:2px solid rgba(255,255,255,.08);
+      border-bottom:2px solid rgba(255,255,255,.08);
+    }
+
+    .schedule-cell.empty{
+      background:linear-gradient(180deg,#132941,#102338);
+    }
+
+    .schedule-match-card{
+      background:linear-gradient(180deg,#d8ff34 0%, #bdf51d 100%);
+      border:1px solid #8ac507;
+      box-shadow:0 14px 28px rgba(0,0,0,.22);
+    }
+
+    .schedule-match-top{
+      background:linear-gradient(90deg,#083d77 0%, #0d7bdc 55%, #ff6a00 100%);
+    }
+
+    .schedule-team-row{
+      background:rgba(255,255,255,.46);
+      border:1px solid rgba(255,255,255,.62);
+      color:#15250d;
+    }
+
+    .schedule-team-row.win{
+      background:rgba(255,255,255,.84);
+      box-shadow:inset 0 0 0 2px rgba(255,106,0,.12);
+    }
+
+    .schedule-team-score{
+      background:#fff;
+      color:#073767;
+      box-shadow:0 4px 12px rgba(6,41,86,.12);
+    }
+
+    .schedule-score-sep{
+      color:#17324f;
+    }
+
+    .status-pill.ready{
+      background:#fff3ca;
+      color:#8a5c00;
+      border-color:#f2cf7a;
+    }
+
+    .status-pill.done{
+      background:#e6fff0;
+      color:#16603a;
+      border-color:#93d7af;
+    }
+
+    .status-pill.bye{
+      background:#e6f2ff;
+      color:#1f4f95;
+      border-color:#a6c0eb;
+    }
+
+    .status-pill.pending{
+      background:#edf2f8;
+      color:#54657b;
+      border-color:#d0dae7;
+    }
+
+    .result-panel h2,
+    .sub-title,
+    .section-title{
+      color:#0a3766;
+    }
+
+    .result-status{
+      background:linear-gradient(180deg,#eef6ff,#e3f0ff);
+      color:#0b3766;
+      border-color:#bdd5f0;
+    }
+
+    .final-standings-table th{
+      background:linear-gradient(135deg,#0d7bdc,#083d77);
+    }
+
+    .final-standings-table .group-row td{
+      background:linear-gradient(90deg,#fff2bd,#ffe59b);
+      color:#654700;
+    }
+
+    .rank-1{background:linear-gradient(135deg,#ffb000,#ff6a00)}
+    .rank-2{background:linear-gradient(135deg,#96a3b5,#687589)}
+    .rank-3{background:linear-gradient(135deg,#db8a53,#9a5327)}
+    .rank-other{background:linear-gradient(135deg,#0d7bdc,#083d77)}
+
+    .start-screen{
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255,176,0,.18), transparent 18%),
+        radial-gradient(circle at 86% 14%, rgba(95,225,255,.12), transparent 14%),
+        linear-gradient(135deg, rgba(4,33,71,.95), rgba(9,109,201,.92) 50%, rgba(255,106,0,.92));
+    }
+
+    .start-card{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 26px 58px rgba(0,0,0,.30);
+    }
+
+    .start-left{
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+    }
+
+    .start-brand{
+      color:#ffb000;
+      text-shadow:-2px -2px 0 #fff,2px -2px 0 #fff,-2px 2px 0 #fff,2px 2px 0 #fff,0 10px 28px rgba(0,0,0,.28);
+    }
+
+    .flow-box{
+      background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.10));
+      border:1px solid rgba(255,255,255,.20);
+      box-shadow:0 10px 24px rgba(0,0,0,.16);
+    }
+
+    .flow-line{
+      background:linear-gradient(90deg,#ffb000,#d8ff34,#5fe1ff);
+      height:5px;
+    }
+
+    .start-bottom-banner{
+      background:linear-gradient(135deg,rgba(255,106,0,.26),rgba(255,176,0,.20));
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 12px 26px rgba(0,0,0,.16);
+    }
+
+    .start-right{
+      background:linear-gradient(180deg,#ffffff,#f2f8ff);
+    }
+
+    .start-form-title{
+      color:#083d77;
+    }
+
+    .start-submit,
+    .btn-green{
+      background:linear-gradient(135deg,#083d77,#0d7bdc);
+    }
+
+    .start-submit:hover,
+    .btn-green:hover{
+      background:linear-gradient(135deg,#0b4d94,#1492f6);
+    }
+
+    .btn-blue{
+      background:linear-gradient(135deg,#00a8ff,#0d7bdc);
+    }
+
+    .btn-blue:hover{
+      background:linear-gradient(135deg,#16bcff,#2d91ff);
+    }
+
+    .btn-gray{
+      background:linear-gradient(135deg,#62748c,#445267);
+    }
+
+    .btn-gray:hover{
+      background:linear-gradient(135deg,#71839d,#526178);
+    }
+
+    .btn-danger{
+      background:linear-gradient(135deg,#d63b34,#ff6a00);
+    }
+
+    .btn-danger:hover{
+      background:linear-gradient(135deg,#e24c44,#ff7f1a);
+    }
+
+  
+
+    .content-page-grid{display:grid;grid-template-columns:1.02fr 1.18fr;gap:18px}
+    .content-mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+    .content-mini-card{
+      background:linear-gradient(135deg,rgba(13,106,77,.12),rgba(255,145,0,.12));
+      border:1px solid rgba(13,106,77,.12);
+      border-radius:16px;
+      padding:14px;
+      box-shadow:var(--shadow);
+    }
+    .content-mini-card .label{font-size:12px;color:#667;font-weight:800;text-transform:uppercase;letter-spacing:.4px}
+    .content-mini-card .value{font-size:28px;color:#0d6a4d;font-weight:900;margin-top:8px}
+    .content-mini-card .note{font-size:12px;color:#6f6f6f;margin-top:4px;line-height:1.4}
+    .content-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .content-list{display:grid;gap:12px}
+    .content-item{
+      border:1px solid #dce9e2;
+      border-left:6px solid #0d8a61;
+      border-radius:16px;
+      padding:14px;
+      background:linear-gradient(180deg,#fff,#f9fdfb);
+      box-shadow:0 10px 24px rgba(0,0,0,.05);
+    }
+    .content-item-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+    .content-item-title{font-size:20px;font-weight:900;color:#123}
+    .content-item-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .content-chip{
+      display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;
+      font-size:12px;font-weight:800;background:#eef7f3;color:#0d6a4d;border:1px solid #d6ede2;
+    }
+    .content-item-note{margin-top:10px;font-size:13px;color:#5e6366;line-height:1.5}
+    .content-item-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .content-empty-box{
+      border:2px dashed #cfdad3;border-radius:16px;padding:24px;text-align:center;color:#7d8487;background:#fbfdfc;
+    }
+    @media (max-width:1100px){
+      .content-page-grid{grid-template-columns:1fr}
+      .content-mini-grid{grid-template-columns:1fr}
+      .content-form-grid{grid-template-columns:1fr}
+    }
+
+
+    /* V19 SPORTY + A4 LAYOUT OVERRIDES */
+    :root{
+      --matchW:220px;
+      --matchH:78px;
+      --matchHeaderH:24px;
+      --matchRowH:27px;
+      --colGap:28px;
+      --pairGap:12px;
+      --leafGap:96px;
+      --topPad:78px;
+      --leftPad:18px;
+    }
+
+    .hero{
+      background:
+        radial-gradient(circle at 15% 22%, rgba(255,196,0,.22), transparent 16%),
+        radial-gradient(circle at 88% 18%, rgba(0,255,255,.16), transparent 18%),
+        linear-gradient(135deg,#031d46 0%, #0a57b8 36%, #00a6ff 58%, #ff6a00 100%);
+      border:1px solid rgba(255,255,255,.18);
+    }
+
+    .page-title{letter-spacing:.8px}
+
+    .top-tabs{
+      background:rgba(4,18,37,.42);
+      border:1px solid rgba(255,255,255,.08);
+      padding:10px;
+      border-radius:22px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 16px 36px rgba(0,0,0,.18);
+    }
+
+    .tab-btn{
+      border-radius:14px;
+      text-transform:uppercase;
+      letter-spacing:.45px;
+    }
+
+    .tab-btn.active{
+      background:linear-gradient(135deg,#0a4ea9 0%, #00a8ff 40%, #ff7b00 100%);
+    }
+
+    .card,.result-panel{
+      border-left:6px solid #ff7b00;
+      border-top:1px solid #d6e7ff;
+      background:linear-gradient(180deg,#ffffff 0%, #f0f7ff 100%);
+    }
+
+    .bracket-card{padding:10px;background:linear-gradient(180deg,#07182c,#04101d)}
+
+    .bracket-stage{
+      width:100%;
+      max-width:1122px;
+      min-height:794px;
+      overflow:auto;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(14,120,255,.14), transparent 42%),
+        linear-gradient(180deg,#091c32 0%, #071322 100%);
+    }
+
+    .bracket-body{padding:12px 10px 10px;min-height:calc(794px - 170px);overflow:auto}
+    .bracket-topbar{margin-bottom:8px}
+    .stage-badge{padding:8px 12px;font-size:12px}
+    .round-header{padding:7px 8px;font-size:12px}
+    .match-card-box{border-radius:10px}
+    .match-topbar{padding:4px 8px;grid-template-columns:70px 1fr}
+    .match-code-box,.match-score-box{height:18px;font-size:10px}
+    .player-row{padding:4px 8px;font-size:12px}
+    .champion-box{width:190px;min-height:118px;border-radius:16px}
+    .champion-name{font-size:18px}
+    .champion-icon{font-size:28px}
+    .svg-path{stroke-width:5}
+
+    .schedule-date-pill{
+      background:linear-gradient(135deg,#052b60,#0f73df 56%, #00c4ff 100%);
+    }
+
+    .schedule-board{
+      border:1px solid rgba(86,152,255,.28);
+      background:linear-gradient(180deg,#112a44 0%, #0b1a2c 100%);
+    }
+
+    .schedule-match-card{
+      border:1px solid #9edb00;
+      background:linear-gradient(180deg,#f0ff72 0%, #cfff1f 18%, #bff11a 100%);
+    }
+
+    .schedule-save-btn,
+    .btn-blue,
+    .btn-green,
+    button{
+      box-shadow:0 8px 18px rgba(0,0,0,.14);
+    }
+
+    .schedule-board-title{color:#fff;text-transform:uppercase;letter-spacing:.4px}
+    .schedule-board-sub{color:#d7e8ff}
+
+
+
+    /* TIMES NEW ROMAN FINAL OVERRIDE */
+    body, input, select, textarea, button, table, th, td,
+    h1, h2, h3, .page-title, .page-subtitle, .section-title, .sub-title,
+    .stage-main-title, .stage-main-sub, .stage-mini-pill, .stage-badge,
+    .match-code-box, .match-score-box, .player-row, .content-item-title,
+    .schedule-board-title, .schedule-board-sub {
+      font-family: "Times New Roman", Times, serif !important;
+    }
+
+    .schedule-card-edit{
+      display:grid;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .schedule-card-team{
+      display:grid;
+      grid-template-columns:auto 70px auto 70px;
+      gap:8px;
+      align-items:center;
+    }
+
+    .card-tag{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:34px;
+      border-radius:10px;
+      font-size:12px;
+      font-weight:700;
+      padding:0 10px;
+      color:#1f1f1f;
+      background:#f4f4f4;
+      border:1px solid rgba(255,255,255,.16);
+    }
+
+    .card-tag.yellow{
+      background:#ffe680;
+      border-color:#ffcb3d;
+    }
+
+    .card-tag.red{
+      background:#ff9fa3;
+      border-color:#ff5d66;
+    }
+
+    .schedule-card-team input{
+      width:100%;
+      min-height:36px;
+      text-align:center;
+    }
+
+    @media (max-width: 680px){
+      .schedule-card-team{
+        grid-template-columns:1fr 64px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -763,7 +1462,7 @@
         <div class="hero-info">
           <div>
             <h1 class="page-title">🏆 QUẢN LÝ GIẢI ĐẤU PRO</h1>
-            <div class="page-subtitle">Chuyên nghiệp - Đơn giản - Chính xác.</div>
+            <div class="page-subtitle">Bản điều hành giải thể thao phong cách arena - nhiều nội dung, lịch nhiều ngày, nhập tỉ số trực tiếp và tự cập nhật kết quả.</div>
           </div>
           <div class="hero-badges">
             <div class="hero-badge" id="heroTeamCount">0 ĐỘI</div>
@@ -798,6 +1497,7 @@
 
       <div class="top-tabs">
         <button class="tab-btn active" data-tab="tabInfo" onclick="switchTab('tabInfo')">Thông tin giải</button>
+        <button class="tab-btn" data-tab="tabContents" onclick="switchTab('tabContents')">Nội dung giải</button>
         <button class="tab-btn" data-tab="tabTeams" onclick="switchTab('tabTeams')">Danh sách VĐV</button>
         <button class="tab-btn" data-tab="tabBracket" onclick="switchTab('tabBracket')">Bảng đấu &amp; kết quả</button>
         <button class="tab-btn" data-tab="tabSchedule" onclick="switchTab('tabSchedule')">Lịch thi đấu</button>
@@ -834,7 +1534,7 @@
               </div>
               <div class="field" id="groupCountWrap">
                 <label for="groupCount">Số bảng</label>
-                <input id="groupCount" type="number" value="2" min="2">
+                <input id="groupCount" type="number" value="1" min="1">
               </div>
             </div>
 
@@ -844,7 +1544,23 @@
             </div>
 
             <div class="toolbar" style="margin-top:14px;">
-              <div class="inline-field wide">
+              <div class="inline-field">
+                <label for="scheduleFromDate">Từ ngày</label>
+                <input id="scheduleFromDate" type="date">
+              </div>
+              <div class="inline-field">
+                <label for="scheduleToDate">Đến ngày</label>
+                <input id="scheduleToDate" type="date">
+              </div>
+              <div class="inline-field">
+                <label for="dailyStartTime">Giờ bắt đầu ngày</label>
+                <input id="dailyStartTime" type="time" value="08:00">
+              </div>
+              <div class="inline-field">
+                <label for="dailyEndTime">Giờ kết thúc ngày</label>
+                <input id="dailyEndTime" type="time" value="20:00">
+              </div>
+              <div class="inline-field" style="display:none;">
                 <label for="startTime">Bắt đầu</label>
                 <input id="startTime" type="datetime-local">
               </div>
@@ -864,6 +1580,7 @@
 
             <div class="toolbar" style="margin-top:14px;">
               <button class="btn-green" onclick="saveTournamentInfoFromMain()">Lưu thông tin giải</button>
+              <button class="btn-blue" onclick="saveCurrentOperatingContent()">Lưu giải đang điều hành</button>
               <button onclick="createTournament()">Tạo giải</button>
               <button onclick="generateSchedule()">Xếp lịch theo giờ</button>
               <button onclick="exportExcel()">Xuất Excel</button>
@@ -919,6 +1636,77 @@
         </div>
       </div>
 
+            <div id="tabContents" class="tab-panel">
+        <div class="content-page-grid">
+          <div class="card">
+            <h2 class="section-title">Danh mục nội dung của giải</h2>
+            <div class="hint" style="margin-bottom:14px;">Dùng trang này để lưu nhiều nội dung thuộc cùng một giải, ví dụ: Đơn nam, Đôi nam, Đơn nữ, Đôi nữ, Đôi nam nữ. Mỗi nội dung có <b>danh sách VĐV, nhánh đấu, lịch thi đấu, kết quả và trạng thái riêng hoàn toàn</b>. Khi mở lại file, hệ thống sẽ nhớ đúng nội dung bạn đang điều hành.</div>
+
+            <div class="content-form-grid">
+              <div class="field">
+                <label for="contentNameInput">Tên nội dung</label>
+                <input id="contentNameInput" type="text" placeholder="VD: Đơn nam / Đôi nam / Đôi nam nữ">
+              </div>
+              <div class="field">
+                <label for="contentAgeInput">Nhóm tuổi</label>
+                <input id="contentAgeInput" type="text" placeholder="VD: U15 / Mở rộng / 18+">
+              </div>
+              <div class="field">
+                <label for="contentFormatInput">Thể thức</label>
+                <select id="contentFormatInput">
+                  <option value="knockout">Loại trực tiếp</option>
+                  <option value="groups">Vòng bảng</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="contentStatusInput">Trạng thái nội dung</label>
+                <select id="contentStatusInput">
+                  <option value="draft">Chuẩn bị</option>
+                  <option value="running">Đang tổ chức</option>
+                  <option value="finished">Hoàn thành</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field" style="margin-top:12px;">
+              <label for="contentNoteInput">Ghi chú</label>
+              <textarea id="contentNoteInput" placeholder="Ghi chú ngắn cho nội dung này, ví dụ: chia theo CLB, giới hạn tuổi, đánh vòng tròn rồi loại trực tiếp..."></textarea>
+            </div>
+
+            <div class="toolbar" style="margin-top:14px;">
+              <button class="btn-green" onclick="addTournamentContent()">Thêm nội dung</button>
+              <button class="btn-gray" onclick="prefillContentFromCurrent()">Lấy từ thông tin hiện tại</button>
+              <button class="btn-blue" onclick="saveCurrentOperatingContent()">Lưu giải đang điều hành</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="content-mini-grid">
+              <div class="content-mini-card">
+                <div class="label">Tổng nội dung</div>
+                <div class="value" id="contentCountMetric">0</div>
+                <div class="note">Tổng số nội dung đang lưu cho giải đấu này.</div>
+              </div>
+              <div class="content-mini-card">
+                <div class="label">Nội dung đang điều hành</div>
+                <div class="value" id="contentActiveMetric" style="font-size:18px;line-height:1.35;">-</div>
+                <div class="note">Tên nội dung đang hiển thị ở phần thông tin giải.</div>
+              </div>
+              <div class="content-mini-card">
+                <div class="label">Môn thi đấu</div>
+                <div class="value" id="contentSportMetric" style="font-size:18px;line-height:1.35;">-</div>
+                <div class="note">Theo thông tin chung của giải đang quản lý.</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 class="sub-title">Danh sách nội dung đã lưu</h3>
+              <div id="contentsList" class="content-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div id="tabTeams" class="tab-panel">
         <div class="card">
           <h2 class="section-title">Danh sách đội / VĐV</h2>
@@ -945,11 +1733,15 @@
             </div>
             <div class="inline-field" style="align-self:end;">
               <label>&nbsp;</label>
-              <button class="btn-gray" onclick="autoSeed()">Auto Seed</button>
+              <button class="btn-blue" onclick="randomizeSeeds()">Bốc thăm seed</button>
+            </div>
+            <div class="inline-field" style="align-self:end;">
+              <label>&nbsp;</label>
+              <button class="btn-danger" onclick="clearAllTeams()">Xóa tất cả</button>
             </div>
           </div>
 
-          <div class="hint">Cột Excel: cột A là tên đội, cột B là seed. Nếu không có seed hệ thống sẽ tự gán. Seed càng nhỏ thì hạt giống càng cao.</div>
+          <div class="hint">Cột Excel: cột A là tên đội, cột B là seed. Nếu không có seed hệ thống sẽ tự gán. Bạn có thể bấm <b>Bốc thăm seed</b> để xáo trộn hạt giống ngẫu nhiên cho nội dung đang điều hành.</div>
 
           <div class="table-wrap" style="margin-top:12px">
             <table>
@@ -1034,7 +1826,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'quan_ly_giai_dau_pro_tabs_v13_knockout_formula';
+    const STORAGE_KEY = 'quan_ly_giai_dau_pro_tabs_v21_schedule_datetime_inline';
     const ASSET_STORAGE_KEY = 'quan_ly_giai_dau_assets_v2';
     let matchAutoId = 0;
 
@@ -1042,12 +1834,14 @@
       teams: [],
       results: {},
       format: 'knockout',
-      groupCount: 2,
+      groupCount: 1,
       groups: [],
       schedule: [],
       knockoutTree: null,
       matchStatuses: {},
       activeTab: 'tabInfo',
+      activeContentId: '',
+      tournamentContents: [],
       tournamentInfo: {
         title: '',
         sport: '',
@@ -1061,6 +1855,7 @@
     let assets = { logo:'', qr:'', banner:'' };
 
     function saveState(){
+      persistActiveContentData();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
@@ -1072,13 +1867,22 @@
     }
 
     function saveAssets(){
-      try{ sessionStorage.setItem(ASSET_STORAGE_KEY, JSON.stringify(assets)); }catch(e){ console.warn('Không lưu được ảnh phiên làm việc', e); }
+      try{
+        localStorage.setItem(ASSET_STORAGE_KEY, JSON.stringify(assets));
+      }catch(e){
+        console.warn('Không lưu được ảnh của giải đấu', e);
+      }
     }
 
     function loadAssets(){
-      const raw = sessionStorage.getItem(ASSET_STORAGE_KEY);
+      const raw = localStorage.getItem(ASSET_STORAGE_KEY) || sessionStorage.getItem(ASSET_STORAGE_KEY);
       if(raw){
-        try{ assets = JSON.parse(raw); }catch(e){ console.error(e); }
+        try{
+          assets = JSON.parse(raw);
+          localStorage.setItem(ASSET_STORAGE_KEY, JSON.stringify(assets));
+        }catch(e){
+          console.error(e);
+        }
       }
     }
 
@@ -1103,6 +1907,158 @@
       return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
     }
 
+    function formatDateOnly(date){
+      const pad = n => String(n).padStart(2, '0');
+      return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+    }
+
+    function formatDateOnlyDisplay(date){
+      const pad = n => String(n).padStart(2, '0');
+      return `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()}`;
+    }
+
+    function timeStringToMinutes(value, fallback = 480){
+      const m = String(value || '').match(/^(\d{2}):(\d{2})$/);
+      if(!m) return fallback;
+      return parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
+    }
+
+    function combineDateAndTime(dateStr, timeStr){
+      return new Date(`${dateStr}T${timeStr}`);
+    }
+
+    function syncLegacyStartTime(){
+      const fromDate = document.getElementById('scheduleFromDate')?.value;
+      const startTime = document.getElementById('dailyStartTime')?.value || '08:00';
+      const legacy = document.getElementById('startTime');
+      if(legacy && fromDate){
+        legacy.value = `${fromDate}T${startTime}`;
+      }
+    }
+
+    function scheduleConfigFromUI(){
+      const now = new Date();
+      const fallbackDate = formatDateOnly(now);
+      const fromDate = document.getElementById('scheduleFromDate')?.value || fallbackDate;
+      const toDate = document.getElementById('scheduleToDate')?.value || fromDate;
+      const dayStart = document.getElementById('dailyStartTime')?.value || '08:00';
+      const dayEnd = document.getElementById('dailyEndTime')?.value || '20:00';
+      return { fromDate, toDate, dayStart, dayEnd };
+    }
+
+    function scheduleMatchesInRange(matches, duration, breakMin, courts){
+      const config = scheduleConfigFromUI();
+      if(config.toDate < config.fromDate){
+        throw new Error('Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu.');
+      }
+      const startMin = timeStringToMinutes(config.dayStart, 480);
+      const endMin = timeStringToMinutes(config.dayEnd, 1200);
+      if(endMin <= startMin){
+        throw new Error('Giờ kết thúc ngày phải lớn hơn giờ bắt đầu ngày.');
+      }
+
+      const nextDayStart = dateObj => {
+        const next = new Date(dateObj);
+        next.setDate(next.getDate() + 1);
+        return combineDateAndTime(formatDateOnly(next), config.dayStart);
+      };
+
+      let cursor = combineDateAndTime(config.fromDate, config.dayStart);
+      const schedule = [];
+      let idx = 0;
+
+      while(idx < matches.length){
+        const dayKey = formatDateOnly(cursor);
+        if(dayKey > config.toDate){
+          throw new Error('Khoảng ngày thi đấu hiện tại không đủ để xếp hết lịch. Hãy tăng số sân, giảm thời lượng hoặc nới ngày kết thúc.');
+        }
+
+        let slotStart = new Date(cursor);
+        const currentMinutes = slotStart.getHours() * 60 + slotStart.getMinutes();
+        if(currentMinutes < startMin){
+          slotStart = combineDateAndTime(dayKey, config.dayStart);
+        }
+
+        const slotEnd = addMinutes(slotStart, duration);
+        const slotEndMinutes = slotEnd.getHours() * 60 + slotEnd.getMinutes();
+
+        if(slotEndMinutes > endMin || formatDateOnly(slotEnd) !== dayKey){
+          cursor = nextDayStart(slotStart);
+          continue;
+        }
+
+        const batch = matches.slice(idx, idx + courts);
+        batch.forEach((m, courtIndex) => {
+          schedule.push({
+            ...m,
+            start: new Date(slotStart),
+            end: new Date(slotEnd),
+            court: `Sân ${courtIndex + 1}`,
+            courtNo: courtIndex + 1
+          });
+        });
+
+        idx += batch.length;
+        cursor = addMinutes(slotEnd, breakMin);
+        const cursorMinutes = cursor.getHours() * 60 + cursor.getMinutes();
+        if(cursorMinutes >= endMin || formatDateOnly(cursor) !== dayKey){
+          cursor = nextDayStart(slotStart);
+        }
+      }
+
+      syncLegacyStartTime();
+      return schedule;
+    }
+
+    function scheduleRoundMatchesSequentially(groupedRounds, duration, breakMin, courts){
+      const config = scheduleConfigFromUI();
+      if(config.toDate < config.fromDate){
+        throw new Error('Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu.');
+      }
+      const startMin = timeStringToMinutes(config.dayStart, 480);
+      const endMin = timeStringToMinutes(config.dayEnd, 1200);
+      if(endMin <= startMin){
+        throw new Error('Giờ kết thúc ngày phải lớn hơn giờ bắt đầu ngày.');
+      }
+      const nextDayStart = dateObj => {
+        const next = new Date(dateObj);
+        next.setDate(next.getDate() + 1);
+        return combineDateAndTime(formatDateOnly(next), config.dayStart);
+      };
+      let cursor = combineDateAndTime(config.fromDate, config.dayStart);
+      const schedule = [];
+      groupedRounds.forEach(roundMatches => {
+        let idx = 0;
+        while(idx < roundMatches.length){
+          const dayKey = formatDateOnly(cursor);
+          if(dayKey > config.toDate){
+            throw new Error('Khoảng ngày thi đấu hiện tại không đủ để xếp hết lịch. Hãy tăng số sân, giảm thời lượng hoặc nới ngày kết thúc.');
+          }
+          let slotStart = new Date(cursor);
+          const currentMinutes = slotStart.getHours() * 60 + slotStart.getMinutes();
+          if(currentMinutes < startMin) slotStart = combineDateAndTime(dayKey, config.dayStart);
+          const slotEnd = addMinutes(slotStart, duration);
+          const slotEndMinutes = slotEnd.getHours() * 60 + slotEnd.getMinutes();
+          if(slotEndMinutes > endMin || formatDateOnly(slotEnd) !== dayKey){
+            cursor = nextDayStart(slotStart);
+            continue;
+          }
+          const batch = roundMatches.slice(idx, idx + courts);
+          batch.forEach((m, courtIndex) => {
+            schedule.push({ ...m, start:new Date(slotStart), end:new Date(slotEnd), court:`Sân ${courtIndex + 1}`, courtNo:courtIndex + 1 });
+          });
+          idx += batch.length;
+          cursor = addMinutes(slotEnd, breakMin);
+          const cursorMinutes = cursor.getHours() * 60 + cursor.getMinutes();
+          if(cursorMinutes >= endMin || formatDateOnly(cursor) !== dayKey){
+            cursor = nextDayStart(slotStart);
+          }
+        }
+      });
+      return schedule;
+    }
+
+
     function getCourtNumber(label){
       const m = String(label || '').match(/(\d+)/);
       return m ? parseInt(m[1], 10) : 1;
@@ -1117,11 +2073,19 @@
       return `gr_${normalizeName(match?.phase || '')}__${normalizeName(match?.teamA || '')}__${normalizeName(match?.teamB || '')}`;
     }
 
+    function makeDomSafeId(value){
+      return String(value || '').replace(/[^a-zA-Z0-9_-]+/g, '_');
+    }
+
+    function escapeJsString(value){
+      return String(value || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    }
+
     function getStatusText(status){
       const map = {
-        waiting:'Chờ vòng trước',
+        waiting:'Chờ đấu',
         pending:'Chờ đấu',
-        live:'Đang đấu',
+        live:'Chờ đấu',
         finished:'Đã kết thúc',
         bye:'BYE / Tự động'
       };
@@ -1129,6 +2093,9 @@
     }
 
     function findGroupResultByMatch(match){
+      if(match?.groupIndex != null && match?.teamAIndex != null && match?.teamBIndex != null){
+        return state.results[`group_${match.groupIndex}_${match.teamAIndex}_${match.teamBIndex}`] || null;
+      }
       if(state.format !== 'groups' || !Array.isArray(state.groups)) return null;
       for(let g = 0; g < state.groups.length; g++){
         const group = state.groups[g] || [];
@@ -1147,23 +2114,70 @@
       return null;
     }
 
-    function getMatchStatus(match){
-      const key = getScheduleMatchKey(match);
-      const saved = state.matchStatuses?.[key];
-      if(match?.autoAdvance) return 'bye';
-      if(saved) return saved;
-      if(match?.matchId){
-        if(hasNumericScore(match.scoreA, match.scoreB)) return 'finished';
-        return match.ready ? 'pending' : 'waiting';
+    function normalizeAllMatchStatuses(){
+      if(!state.matchStatuses) state.matchStatuses = {};
+      const nextStatuses = {};
+      if(Array.isArray(state.schedule)){
+        state.schedule.forEach(match => {
+          const key = getScheduleMatchKey(match);
+          if(match?.autoAdvance){
+            nextStatuses[key] = 'bye';
+            return;
+          }
+          const groupResult = findGroupResultByMatch(match);
+          const hasSavedScore = hasNumericScore(match?.scoreA, match?.scoreB) || hasNumericScore(groupResult?.a, groupResult?.b);
+          nextStatuses[key] = hasSavedScore ? 'finished' : 'waiting';
+        });
       }
-      return findGroupResultByMatch(match) ? 'finished' : 'pending';
+      state.matchStatuses = nextStatuses;
+    }
+
+    function getMatchStatus(match){
+      if(match?.autoAdvance) return 'bye';
+      const key = getScheduleMatchKey(match);
+      const groupResult = findGroupResultByMatch(match);
+      const hasSavedScore = hasNumericScore(match?.scoreA, match?.scoreB) || hasNumericScore(groupResult?.a, groupResult?.b);
+      if(hasSavedScore) return 'finished';
+      if(state.matchStatuses?.[key] === 'bye') return 'bye';
+      return 'waiting';
     }
 
     function updateMatchStatus(selectEl){
       const key = selectEl?.dataset?.matchKey;
       if(!key) return;
       if(!state.matchStatuses) state.matchStatuses = {};
-      state.matchStatuses[key] = selectEl.value;
+      state.matchStatuses[key] = hasNumericScore(selectEl?.dataset?.scoreA, selectEl?.dataset?.scoreB) ? 'finished' : 'pending';
+      saveState();
+      renderSchedule();
+    }
+
+    function updateScheduleDateTime(matchKey, domKey){
+      if(!matchKey || !domKey || !Array.isArray(state.schedule)) return;
+      const startInput = document.getElementById(`schedStart_${domKey}`);
+      const endInput = document.getElementById(`schedEnd_${domKey}`);
+      if(!startInput || !endInput) return;
+
+      const match = state.schedule.find(item => getScheduleMatchKey(item) === matchKey);
+      if(!match) return;
+
+      const originalStart = new Date(match.start);
+      const originalEnd = new Date(match.end);
+      const durationMs = Math.max(1, originalEnd - originalStart);
+
+      const nextStart = startInput.value ? new Date(startInput.value) : originalStart;
+      const nextEnd = endInput.value ? new Date(endInput.value) : new Date(nextStart.getTime() + durationMs);
+
+      if(Number.isNaN(nextStart.getTime()) || Number.isNaN(nextEnd.getTime())){
+        alert('Vui lòng nhập ngày giờ hợp lệ.');
+        return;
+      }
+      if(nextEnd <= nextStart){
+        alert('Giờ kết thúc phải sau giờ bắt đầu.');
+        return;
+      }
+
+      match.start = nextStart;
+      match.end = nextEnd;
       saveState();
       renderSchedule();
     }
@@ -1201,6 +2215,340 @@
       return total;
     }
 
+    function getContentStatusText(status){
+      const map = { draft:'Chuẩn bị', running:'Đang tổ chức', finished:'Hoàn thành' };
+      return map[status] || 'Chuẩn bị';
+    }
+
+    function safeClone(value){
+      return JSON.parse(JSON.stringify(value));
+    }
+
+    function readViewSettingsFromUI(){
+      return {
+        startTime: document.getElementById('startTime')?.value || '',
+        scheduleFromDate: document.getElementById('scheduleFromDate')?.value || '',
+        scheduleToDate: document.getElementById('scheduleToDate')?.value || '',
+        dailyStartTime: document.getElementById('dailyStartTime')?.value || '08:00',
+        dailyEndTime: document.getElementById('dailyEndTime')?.value || '20:00',
+        matchDuration: Math.max(1, parseInt(document.getElementById('matchDuration')?.value) || 20),
+        breakDuration: Math.max(0, parseInt(document.getElementById('breakDuration')?.value) || 5),
+        courtCount: Math.max(1, parseInt(document.getElementById('courtCount')?.value) || 2)
+      };
+    }
+
+    function applyViewSettingsToUI(viewSettings = {}){
+      const now = new Date();
+      const nowValue = toInputDateTimeValue(now);
+      const fallbackDate = formatDateOnly(now);
+      const fallbackTime = formatTimeOnly(now);
+      if(document.getElementById('startTime')) document.getElementById('startTime').value = viewSettings.startTime || nowValue;
+      if(document.getElementById('scheduleFromDate')) document.getElementById('scheduleFromDate').value = viewSettings.scheduleFromDate || fallbackDate;
+      if(document.getElementById('scheduleToDate')) document.getElementById('scheduleToDate').value = viewSettings.scheduleToDate || viewSettings.scheduleFromDate || fallbackDate;
+      if(document.getElementById('dailyStartTime')) document.getElementById('dailyStartTime').value = viewSettings.dailyStartTime || fallbackTime;
+      if(document.getElementById('dailyEndTime')) document.getElementById('dailyEndTime').value = viewSettings.dailyEndTime || '20:00';
+      if(document.getElementById('matchDuration')) document.getElementById('matchDuration').value = viewSettings.matchDuration || 20;
+      if(document.getElementById('breakDuration')) document.getElementById('breakDuration').value = Math.max(0, parseInt(viewSettings.breakDuration) || 5);
+      if(document.getElementById('courtCount')) document.getElementById('courtCount').value = Math.max(1, parseInt(viewSettings.courtCount) || 2);
+      syncLegacyStartTime();
+    }
+
+    function createEmptyContentData(seed = {}){
+      return {
+        teams: [],
+        results: {},
+        format: seed.format || 'knockout',
+        groupCount: 1,
+        groups: [],
+        schedule: [],
+        knockoutTree: null,
+        matchStatuses: {},
+        viewSettings: {
+          startTime: '',
+          scheduleFromDate: '',
+          scheduleToDate: '',
+          dailyStartTime: '08:00',
+          dailyEndTime: '20:00',
+          matchDuration: 20,
+          breakDuration: 5,
+          courtCount: 2
+        },
+        tournamentInfo: {
+          content: seed.name || '',
+          ageGroup: seed.ageGroup || '',
+          format: seed.format || 'knockout',
+          description: seed.note || ''
+        }
+      };
+    }
+
+    function ensureContentDataShape(item){
+      if(!item) return null;
+      if(!item.data) item.data = createEmptyContentData(item);
+      if(!Array.isArray(item.data.teams)) item.data.teams = [];
+      if(!item.data.results) item.data.results = {};
+      if(!Array.isArray(item.data.groups)) item.data.groups = [];
+      if(!Array.isArray(item.data.schedule)) item.data.schedule = [];
+      if(!item.data.matchStatuses) item.data.matchStatuses = {};
+      if(!item.data.tournamentInfo) item.data.tournamentInfo = {};
+      if(!item.data.viewSettings) item.data.viewSettings = {};
+      item.data.format = item.data.format || item.format || 'knockout';
+      item.data.groupCount = Math.max(1, parseInt(item.data.groupCount) || 1);
+      item.data.tournamentInfo.content = item.data.tournamentInfo.content || item.name || '';
+      item.data.tournamentInfo.ageGroup = item.data.tournamentInfo.ageGroup || item.ageGroup || '';
+      item.data.tournamentInfo.format = item.data.tournamentInfo.format || item.data.format || item.format || 'knockout';
+      if(typeof item.data.tournamentInfo.description !== 'string') item.data.tournamentInfo.description = item.note || '';
+      item.data.viewSettings.startTime = item.data.viewSettings.startTime || '';
+      item.data.viewSettings.scheduleFromDate = item.data.viewSettings.scheduleFromDate || '';
+      item.data.viewSettings.scheduleToDate = item.data.viewSettings.scheduleToDate || item.data.viewSettings.scheduleFromDate || '';
+      item.data.viewSettings.dailyStartTime = item.data.viewSettings.dailyStartTime || '08:00';
+      item.data.viewSettings.dailyEndTime = item.data.viewSettings.dailyEndTime || '20:00';
+      item.data.viewSettings.matchDuration = Math.max(1, parseInt(item.data.viewSettings.matchDuration) || 20);
+      item.data.viewSettings.breakDuration = Math.max(0, parseInt(item.data.viewSettings.breakDuration) || 5);
+      item.data.viewSettings.courtCount = Math.max(1, parseInt(item.data.viewSettings.courtCount) || 2);
+      return item;
+    }
+
+    function getContentById(id){
+      return (state.tournamentContents || []).find(item => item.id === id) || null;
+    }
+
+    function buildCurrentContentSnapshot(){
+      return {
+        teams: safeClone(state.teams || []),
+        results: safeClone(state.results || {}),
+        format: state.format || 'knockout',
+        groupCount: Math.max(1, parseInt(state.groupCount) || 1),
+        groups: safeClone(state.groups || []),
+        schedule: safeClone(state.schedule || []),
+        knockoutTree: safeClone(state.knockoutTree || null),
+        matchStatuses: safeClone(state.matchStatuses || {}),
+        viewSettings: readViewSettingsFromUI(),
+        tournamentInfo: {
+          content: normalizeName(state?.tournamentInfo?.content || ''),
+          ageGroup: normalizeName(state?.tournamentInfo?.ageGroup || ''),
+          format: state.format || state?.tournamentInfo?.format || 'knockout',
+          description: String(state?.tournamentInfo?.description || '').trim()
+        }
+      };
+    }
+
+    function persistActiveContentData(){
+      if(!state.activeContentId) return;
+      const item = getContentById(state.activeContentId);
+      if(!item) return;
+      ensureContentDataShape(item);
+      item.name = normalizeName(state?.tournamentInfo?.content || item.name || '');
+      item.ageGroup = normalizeName(state?.tournamentInfo?.ageGroup || item.ageGroup || '');
+      item.format = state.format || state?.tournamentInfo?.format || item.format || 'knockout';
+      item.note = String(state?.tournamentInfo?.description || item.note || '').trim();
+      item.data = buildCurrentContentSnapshot();
+      item.updatedAt = new Date().toISOString();
+    }
+
+    function applyContentDataToMain(item){
+      ensureContentDataShape(item);
+      const data = item.data;
+      const keepTitle = normalizeName(state?.tournamentInfo?.title || '');
+      const keepSport = normalizeName(state?.tournamentInfo?.sport || '');
+      state.teams = safeClone(data.teams || []);
+      state.results = safeClone(data.results || {});
+      state.format = data.format || item.format || 'knockout';
+      state.groupCount = Math.max(1, parseInt(data.groupCount) || 1);
+      state.groups = safeClone(data.groups || []);
+      state.schedule = safeClone(data.schedule || []);
+      state.knockoutTree = safeClone(data.knockoutTree || null);
+      state.matchStatuses = safeClone(data.matchStatuses || {});
+      state.tournamentInfo = {
+        title: keepTitle,
+        sport: keepSport,
+        content: normalizeName(data?.tournamentInfo?.content || item.name || ''),
+        ageGroup: normalizeName(data?.tournamentInfo?.ageGroup || item.ageGroup || ''),
+        format: data?.tournamentInfo?.format || data.format || item.format || 'knockout',
+        description: String(data?.tournamentInfo?.description || item.note || '').trim()
+      };
+      state.activeContentId = item.id;
+      applyViewSettingsToUI(data.viewSettings || {});
+      fillStartFormFromState();
+      fillMainInfoFormFromState();
+      updateTournamentInfoBar();
+      updateMetrics();
+      renderTeams();
+      restoreTournament();
+      renderTournamentContents();
+      toggleFormatFields();
+    }
+
+    function resetOperatingData(){
+      const keepTitle = normalizeName(state?.tournamentInfo?.title || '');
+      const keepSport = normalizeName(state?.tournamentInfo?.sport || '');
+      state.teams = [];
+      state.results = {};
+      state.groups = [];
+      state.schedule = [];
+      state.knockoutTree = null;
+      state.matchStatuses = {};
+      state.format = 'knockout';
+      state.groupCount = 1;
+      state.tournamentInfo = {
+        title: keepTitle,
+        sport: keepSport,
+        content: '',
+        ageGroup: '',
+        format: 'knockout',
+        description: ''
+      };
+      applyViewSettingsToUI({ startTime:'', scheduleFromDate:'', scheduleToDate:'', dailyStartTime:'08:00', dailyEndTime:'20:00', matchDuration:20, breakDuration:5, courtCount:2 });
+      fillStartFormFromState();
+      fillMainInfoFormFromState();
+      renderTeams();
+      restoreTournament();
+      updateTournamentInfoBar();
+      updateMetrics();
+      toggleFormatFields();
+      renderAllStandings();
+    }
+
+    function saveCurrentOperatingContent(showMessage = true){
+      syncInfoDataFromMain();
+      if(!state.activeContentId){
+        if(showMessage) alert('Hãy tạo hoặc mở một nội dung giải trước khi lưu điều hành riêng.');
+        return;
+      }
+      persistActiveContentData();
+      saveState();
+      renderTournamentContents();
+      updateTournamentInfoBar();
+      updateMetrics();
+      if(showMessage) alert('Đã lưu nội dung đang điều hành. Mỗi nội dung hiện có dữ liệu riêng hoàn toàn.');
+    }
+
+    function prefillContentFromCurrent(){
+      const info = state.tournamentInfo || {};
+      document.getElementById('contentNameInput').value = info.content || '';
+      document.getElementById('contentAgeInput').value = info.ageGroup || '';
+      document.getElementById('contentFormatInput').value = info.format || state.format || 'knockout';
+      document.getElementById('contentStatusInput').value = 'running';
+      document.getElementById('contentNoteInput').value = info.description || '';
+    }
+
+    function addTournamentContent(){
+      const name = normalizeName(document.getElementById('contentNameInput').value);
+      const ageGroup = normalizeName(document.getElementById('contentAgeInput').value);
+      const format = document.getElementById('contentFormatInput').value;
+      const status = document.getElementById('contentStatusInput').value;
+      const note = document.getElementById('contentNoteInput').value.trim();
+
+      if(!name){
+        alert('Vui lòng nhập tên nội dung.');
+        return;
+      }
+
+      if(!Array.isArray(state.tournamentContents)) state.tournamentContents = [];
+      const exists = state.tournamentContents.some(item => normalizeName(item.name).toLowerCase() === name.toLowerCase());
+      if(exists){
+        alert('Nội dung này đã tồn tại trong giải.');
+        return;
+      }
+
+      state.tournamentContents.push({
+        id: 'content_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
+        name,
+        ageGroup,
+        format,
+        status,
+        note,
+        createdAt: new Date().toISOString(),
+        data: createEmptyContentData({ name, ageGroup, format, note })
+      });
+
+      document.getElementById('contentNameInput').value = '';
+      document.getElementById('contentAgeInput').value = '';
+      document.getElementById('contentFormatInput').value = state.format || 'knockout';
+      document.getElementById('contentStatusInput').value = 'draft';
+      document.getElementById('contentNoteInput').value = '';
+
+      saveState();
+      renderTournamentContents();
+    }
+
+    function removeTournamentContent(id){
+      if(!confirm('Xóa nội dung này khỏi danh mục giải?')) return;
+      const removingActive = state.activeContentId === id;
+      state.tournamentContents = (state.tournamentContents || []).filter(item => item.id !== id);
+
+      if(removingActive){
+        state.activeContentId = '';
+        if(state.tournamentContents.length){
+          applyContentDataToMain(state.tournamentContents[0]);
+        }else{
+          resetOperatingData();
+        }
+      }
+
+      saveState();
+      renderTournamentContents();
+      updateTournamentInfoBar();
+      updateMetrics();
+    }
+
+    function loadTournamentContentToMain(id){
+      persistActiveContentData();
+      const item = getContentById(id);
+      if(!item) return;
+      applyContentDataToMain(item);
+      saveState();
+      switchTab('tabInfo', false);
+      alert('Đã mở nội dung vào điều hành. Nội dung này có danh sách VĐV, nhánh, lịch và kết quả riêng hoàn toàn.');
+    }
+
+    function renderTournamentContents(){
+      if(!Array.isArray(state.tournamentContents)) state.tournamentContents = [];
+      const list = document.getElementById('contentsList');
+      if(!list) return;
+
+      const currentName = normalizeName(state?.tournamentInfo?.content || '');
+      const activeItem = getContentById(state.activeContentId);
+      document.getElementById('contentCountMetric').textContent = state.tournamentContents.length;
+      document.getElementById('contentActiveMetric').textContent = activeItem ? activeItem.name : (currentName || '-');
+      document.getElementById('contentSportMetric').textContent = normalizeName(state?.tournamentInfo?.sport || '') || '-';
+
+      if(!state.tournamentContents.length){
+        list.innerHTML = `<div class="content-empty-box">Chưa có nội dung nào được lưu cho giải này.<br>Ví dụ: Đơn nam, Đôi nam, Đơn nữ, Đôi nữ, Đôi nam nữ.</div>`;
+        return;
+      }
+
+      list.innerHTML = state.tournamentContents.map((item, index) => {
+        ensureContentDataShape(item);
+        const isActive = item.id === state.activeContentId || normalizeName(item.name) === currentName;
+        const contentTeams = item.data?.teams?.length || 0;
+        const contentMatches = item.data?.schedule?.length || Math.max(0, contentTeams - 1);
+        return `
+          <div class="content-item">
+            <div class="content-item-head">
+              <div>
+                <div class="content-item-title">${index + 1}. ${escapeHtml(item.name)}</div>
+                <div class="content-item-meta">
+                  <span class="content-chip">${escapeHtml(item.ageGroup || 'Chưa ghi nhóm tuổi')}</span>
+                  <span class="content-chip">${escapeHtml(getFormatText(item.format || 'knockout'))}</span>
+                  <span class="content-chip">${escapeHtml(getContentStatusText(item.status || 'draft'))}</span>
+                  <span class="content-chip">${contentTeams} VĐV/đội</span>
+                  <span class="content-chip">${contentMatches} trận</span>
+                  ${isActive ? '<span class="content-chip" style="background:#fff4d8;border-color:#ffe3a0;color:#8b5e00;">Đang điều hành</span>' : ''}
+                </div>
+              </div>
+            </div>
+            <div class="content-item-note">${escapeHtml(item.note || 'Chưa có ghi chú riêng cho nội dung này.')}</div>
+            <div class="content-item-actions">
+              <button class="btn-green" onclick="loadTournamentContentToMain('${item.id}')">Mở điều hành</button>
+              ${isActive ? '<button class="btn-blue" onclick="saveCurrentOperatingContent()">Lưu giải đang điều hành</button>' : ''}
+              <button class="btn-danger" onclick="removeTournamentContent('${item.id}')">Xóa</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
     function updateMetrics(){
       document.getElementById('metricTeams').textContent = state.teams.length;
       document.getElementById('metricMatches').textContent = estimateMatchCount();
@@ -1220,7 +2568,7 @@
 
       document.getElementById('infoTitle').textContent = formatLabelForDisplay(info.title);
       document.getElementById('infoSport').textContent = formatLabelForDisplay(info.sport);
-      document.getElementById('infoContent').textContent = formatLabelForDisplay(info.content);
+      document.getElementById('infoContent').textContent = info.content && String(info.content).trim() ? info.content : (state.tournamentContents?.length ? `${state.tournamentContents.length} nội dung đã lưu` : '-');
       document.getElementById('infoAgeGroup').textContent = formatLabelForDisplay(info.ageGroup);
       document.getElementById('infoFormat').textContent = getFormatText(info.format || 'knockout');
 
@@ -1229,7 +2577,7 @@
         ? info.description.trim()
         : 'Sẵn sàng khởi tạo giải đấu';
       document.getElementById('stagePillSport').textContent = `Môn: ${formatLabelForDisplay(info.sport)}`;
-      document.getElementById('stagePillContent').textContent = `Nội dung: ${formatLabelForDisplay(info.content)}`;
+      document.getElementById('stagePillContent').textContent = `Nội dung: ${info.content && String(info.content).trim() ? info.content : (state.tournamentContents?.length ? state.tournamentContents.length + ' nội dung đã lưu' : '-')}`;
       document.getElementById('stagePillAge').textContent = `Nhóm tuổi: ${formatLabelForDisplay(info.ageGroup)}`;
       document.getElementById('stagePillFormat').textContent = `Thể thức: ${getFormatText(info.format || state.format || 'knockout')}`;
     }
@@ -1252,7 +2600,7 @@
       document.getElementById('editAgeGroup').value = info.ageGroup || '';
       document.getElementById('editDescription').value = info.description || '';
       document.getElementById('format').value = info.format || state.format || 'knockout';
-      document.getElementById('groupCount').value = state.groupCount || 2;
+      document.getElementById('groupCount').value = state.groupCount || 1;
       toggleFormatFields();
     }
 
@@ -1267,7 +2615,7 @@
         format,
         description: document.getElementById('editDescription').value.trim()
       };
-      state.groupCount = Math.max(2, parseInt(document.getElementById('groupCount').value) || 2);
+      state.groupCount = Math.max(1, parseInt(document.getElementById('groupCount').value) || 1);
     }
 
     function saveTournamentInfoFromMain(){
@@ -1276,7 +2624,8 @@
       fillStartFormFromState();
       updateTournamentInfoBar();
       updateMetrics();
-      alert('Đã lưu thông tin giải đấu.');
+      renderTournamentContents();
+      alert(state.activeContentId ? 'Đã lưu thông tin giải và nội dung đang điều hành.' : 'Đã lưu thông tin giải đấu.');
     }
 
     function startTournamentSetup(){
@@ -1294,6 +2643,7 @@
       fillMainInfoFormFromState();
       updateTournamentInfoBar();
       updateMetrics();
+      renderTournamentContents();
       showApp();
     }
 
@@ -1310,11 +2660,17 @@
 
     function restoreAppShell(){
       const info = state.tournamentInfo || {};
-      const hasStarted = info.title || info.sport || info.content || info.ageGroup || info.description || info.format;
+      if(Array.isArray(state.tournamentContents)) state.tournamentContents.forEach(ensureContentDataShape);
+      if(state.activeContentId){
+        const activeItem = getContentById(state.activeContentId);
+        if(activeItem) applyContentDataToMain(activeItem);
+      }
+      const hasStarted = info.title || info.sport || state.activeContentId || info.content || info.ageGroup || info.description || info.format || (state.tournamentContents || []).length;
       fillStartFormFromState();
       fillMainInfoFormFromState();
       updateTournamentInfoBar();
       updateMetrics();
+      renderTournamentContents();
       if(hasStarted) showApp();
       else showStart();
     }
@@ -1382,9 +2738,42 @@
     }
 
     function autoSeed(){
-      state.teams.forEach((t, i) => t.seed = i + 1);
+      randomizeSeeds();
+    }
+
+    function randomizeSeeds(){
+      if(state.teams.length < 2){
+        alert('Cần ít nhất 2 đội để bốc thăm seed.');
+        return;
+      }
+      const items = [...state.teams];
+      for(let i = items.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+      }
+      items.forEach((team, index) => team.seed = index + 1);
+      state.teams = items;
       saveState();
       renderTeams();
+      updateMetrics();
+      alert('Đã bốc thăm seed ngẫu nhiên cho toàn bộ VĐV / đội.');
+    }
+
+    function clearAllTeams(){
+      if(!state.teams.length){
+        alert('Danh sách VĐV đang trống.');
+        return;
+      }
+      if(!confirm('Xóa toàn bộ danh sách VĐV / đội của nội dung đang điều hành?')) return;
+      state.teams = [];
+      state.results = {};
+      state.groups = [];
+      state.schedule = [];
+      state.knockoutTree = null;
+      state.matchStatuses = {};
+      saveState();
+      renderTeams();
+      restoreTournament();
       updateMetrics();
     }
 
@@ -1604,12 +2993,6 @@
       return countRealPlayers(node.left) + countRealPlayers(node.right);
     }
 
-    function countRealPlayers(node){
-      if(!node) return 0;
-      if(node.type === 'leaf') return node.player ? 1 : 0;
-      return countRealPlayers(node.left) + countRealPlayers(node.right);
-    }
-
     function nextPowerOfTwo(n){
       let p = 1;
       while(p < n) p *= 2;
@@ -1666,6 +3049,40 @@
       collectRoundNodesInOrder(node.left, targetRound, arr);
       collectRoundNodesInOrder(node.right, targetRound, arr);
       return arr;
+    }
+
+
+    function countLeafSlots(node){
+      if(!node) return 0;
+      if(node.type === 'leaf') return 1;
+      return countLeafSlots(node.left) + countLeafSlots(node.right);
+    }
+
+    function applyAdaptiveBracketSizing(root){
+      if(!root) return;
+      const stage = document.getElementById('bracketStage');
+      const stageBody = document.querySelector('.bracket-body');
+      const stageWidth = stageBody?.clientWidth || stage?.clientWidth || 1122;
+      const rounds = Math.max(1, assignRounds(root));
+      const leafSlots = Math.max(2, countLeafSlots(root));
+      const leftPad = 22;
+      const championWidth = 220;
+      const matchW = Math.max(176, Math.min(228, Math.floor((stageWidth - leftPad - championWidth - (rounds - 1) * 34) / Math.max(rounds,1))));
+      const colGap = Math.max(26, Math.min(48, Math.floor((stageWidth - leftPad - championWidth - rounds * matchW) / Math.max(rounds,1))));
+      const leafStep = leafSlots >= 12 ? 74 : leafSlots >= 8 ? 84 : 94;
+      const matchH = Math.max(68, Math.min(82, leafStep - 8));
+      const headerH = Math.max(22, Math.min(26, Math.round(matchH * 0.31)));
+      const rowH = Math.max(20, Math.floor((matchH - headerH) / 2));
+      const pairGap = Math.max(8, leafStep - matchH);
+      const rootStyles = document.documentElement.style;
+      rootStyles.setProperty('--matchW', `${matchW}px`);
+      rootStyles.setProperty('--matchH', `${matchH}px`);
+      rootStyles.setProperty('--matchHeaderH', `${headerH}px`);
+      rootStyles.setProperty('--matchRowH', `${rowH}px`);
+      rootStyles.setProperty('--colGap', `${colGap}px`);
+      rootStyles.setProperty('--pairGap', `${pairGap}px`);
+      rootStyles.setProperty('--topPad', '78px');
+      rootStyles.setProperty('--leftPad', `${leftPad}px`);
     }
 
     function computeTreeLayout(root){
@@ -1746,12 +3163,23 @@
       return rs.a > rs.b ? rightWinner : leftWinner;
     }
 
+    function getTeamFairPlayPenalty(team){
+      const yellow = Number(team?.yellowCards) || 0;
+      const red = Number(team?.redCards) || 0;
+      return yellow + red * 2;
+    }
+
     function getSortedGroupStandings(g){
       return [...(state.groups[g] || [])].sort((a, b) => {
         if(b.points !== a.points) return b.points - a.points;
         const diffA = a.gf - a.ga;
         const diffB = b.gf - b.ga;
         if(diffB !== diffA) return diffB - diffA;
+        const fairA = getTeamFairPlayPenalty(a);
+        const fairB = getTeamFairPlayPenalty(b);
+        if(fairA !== fairB) return fairA - fairB;
+        if((a.redCards || 0) !== (b.redCards || 0)) return (a.redCards || 0) - (b.redCards || 0);
+        if((a.yellowCards || 0) !== (b.yellowCards || 0)) return (a.yellowCards || 0) - (b.yellowCards || 0);
         if(b.gf !== a.gf) return b.gf - a.gf;
         return (a.seed || 999) - (b.seed || 999);
       });
@@ -1946,6 +3374,7 @@
         return;
       }
 
+      applyAdaptiveBracketSizing(state.knockoutTree);
       const layout = computeTreeLayout(state.knockoutTree);
       const codeMap = getDisplayCodeMap(layout);
       const styles = getComputedStyle(document.documentElement);
@@ -1962,6 +3391,7 @@
         const title = document.createElement('div');
         title.className = 'round-header';
         title.style.left = (leftPad + idx * (matchW + colGap)) + 'px';
+        title.style.width = Math.min(matchW, 176) + 'px';
         title.textContent = getPhaseNameByIndex(idx, layout.roundNumbers.length);
         canvas.appendChild(title);
       });
@@ -2009,7 +3439,7 @@
       const championBox = document.createElement('div');
       championBox.className = 'champion-box';
       championBox.style.left = layout.championX + 'px';
-      championBox.style.top = (topPad + layout.championY - 78) + 'px';
+      championBox.style.top = (topPad + layout.championY - 60) + 'px';
       championBox.innerHTML = `
         <div class="champion-anchor"></div>
         <div class="champion-icon">🏆</div>
@@ -2020,6 +3450,7 @@
       const championTitle = document.createElement('div');
       championTitle.className = 'round-header';
       championTitle.style.left = layout.championX + 'px';
+      championTitle.style.width = '150px';
       championTitle.textContent = 'Vô địch';
       canvas.appendChild(championTitle);
 
@@ -2030,6 +3461,7 @@
       if(state.format !== 'knockout' || !state.knockoutTree) return;
       const canvas = document.getElementById('bracketCanvas');
       const svg = document.getElementById('bracketSvg');
+      applyAdaptiveBracketSizing(state.knockoutTree);
       const layout = computeTreeLayout(state.knockoutTree);
       if(!layout) return;
 
@@ -2143,11 +3575,29 @@
     function createGroups(){
       state.groups = [];
       state.knockoutTree = null;
-      const groupCount = Math.min(state.groupCount, state.teams.length);
+      const groupCount = Math.max(1, Math.min(state.groupCount || 1, state.teams.length || 1));
       for(let i = 0; i < groupCount; i++) state.groups.push([]);
 
-      const sorted = getSortedTeamsBySeed().map(t => ({ id:t.id, name:t.name, seed:t.seed, played:0, points:0, gf:0, ga:0 }));
-      sorted.forEach((team, i) => state.groups[i % groupCount].push(team));
+      const sorted = getSortedTeamsBySeed().map(t => ({
+        id:t.id,
+        name:t.name,
+        seed:t.seed,
+        played:0,
+        points:0,
+        gf:0,
+        ga:0
+      }));
+
+      const baseSize = Math.floor(sorted.length / groupCount);
+      const remainder = sorted.length % groupCount;
+      let cursor = 0;
+
+      for(let g = 0; g < groupCount; g++){
+        const thisSize = baseSize + (g < remainder ? 1 : 0);
+        state.groups[g] = sorted.slice(cursor, cursor + thisSize);
+        cursor += thisSize;
+      }
+
       renderGroups();
       renderBracketEmpty();
     }
@@ -2174,27 +3624,16 @@
           return;
         }
 
-        for(let i = 0; i < group.length; i++){
-          for(let j = i + 1; j < group.length; j++){
-            const key = `group_${g}_${i}_${j}`;
-            const a = state.results[key]?.a ?? '';
-            const b = state.results[key]?.b ?? '';
-            const card = document.createElement('div');
-            card.className = 'match-card';
-            card.innerHTML = `
-              <div class="match-line">
-                <span class="schedule-badge">Bảng ${String.fromCharCode(65 + g)}</span>
-                <strong>${escapeHtml(group[i].name)}</strong>
-                <input type="number" id="ga_${g}_${i}_${j}" value="${a}" style="width:70px">
-                <span>vs</span>
-                <input type="number" id="gb_${g}_${i}_${j}" value="${b}" style="width:70px">
-                <strong>${escapeHtml(group[j].name)}</strong>
-                <button onclick="saveGroupMatch(${g}, ${i}, ${j})">Lưu</button>
-              </div>
-            `;
-            area.appendChild(card);
-          }
-        }
+        const note = document.createElement('div');
+        note.className = 'match-card';
+        note.innerHTML = `
+          <div class="match-line" style="justify-content:space-between;gap:12px;">
+            <div><strong>Nhập tỉ số tại tab Lịch thi đấu</strong> để bảng xếp hạng bảng ${String.fromCharCode(65 + g)} cập nhật tự động.</div>
+            <span class="schedule-badge">${group.length} VĐV/đội</span>
+            <span class="schedule-badge">Xếp bảng theo thứ tự seed</span>
+          </div>
+        `;
+        area.appendChild(note);
 
         const tableDiv = document.createElement('div');
         tableDiv.id = `groupTable_${g}`;
@@ -2204,23 +3643,55 @@
       });
     }
 
-    function saveGroupMatch(g, i, j){
-      const a = parseInt(document.getElementById(`ga_${g}_${i}_${j}`).value);
-      const b = parseInt(document.getElementById(`gb_${g}_${i}_${j}`).value);
+    function saveGroupMatch(g, i, j, aValue, bValue, yAValue, yBValue, rAValue, rBValue){
+      const aSource = aValue ?? document.getElementById(`ga_${g}_${i}_${j}`)?.value;
+      const bSource = bValue ?? document.getElementById(`gb_${g}_${i}_${j}`)?.value;
+      const yASource = yAValue ?? document.getElementById(`groupSchedYA_${g}_${i}_${j}`)?.value;
+      const yBSource = yBValue ?? document.getElementById(`groupSchedYB_${g}_${i}_${j}`)?.value;
+      const rASource = rAValue ?? document.getElementById(`groupSchedRA_${g}_${i}_${j}`)?.value;
+      const rBSource = rBValue ?? document.getElementById(`groupSchedRB_${g}_${i}_${j}`)?.value;
+      const a = parseInt(aSource);
+      const b = parseInt(bSource);
+      const yellowA = Math.max(0, parseInt(yASource || 0) || 0);
+      const yellowB = Math.max(0, parseInt(yBSource || 0) || 0);
+      const redA = Math.max(0, parseInt(rASource || 0) || 0);
+      const redB = Math.max(0, parseInt(rBSource || 0) || 0);
       if(isNaN(a) || isNaN(b)){ alert('Vui lòng nhập đủ tỉ số.'); return; }
       const key = `group_${g}_${i}_${j}`;
-      state.results[key] = { a, b };
+      state.results[key] = { a, b, yellowA, yellowB, redA, redB };
       if(!state.matchStatuses) state.matchStatuses = {};
       const scheduleKey = `gr_Bảng ${String.fromCharCode(65 + g)}__${normalizeName(state.groups[g][i].name)}__${normalizeName(state.groups[g][j].name)}`;
       state.matchStatuses[scheduleKey] = 'finished';
+      if(Array.isArray(state.schedule)){
+        state.schedule.forEach(match => {
+          if(match.groupIndex === g && match.teamAIndex === i && match.teamBIndex === j){
+            match.scoreA = a;
+            match.scoreB = b;
+            match.yellowA = yellowA;
+            match.yellowB = yellowB;
+            match.redA = redA;
+            match.redB = redB;
+          }
+        });
+      }
       saveState();
       recalculateGroup(g);
-      generateSchedule();
+      renderSchedule();
+    }
+
+    function saveGroupMatchFromSchedule(g, i, j){
+      const inputA = document.getElementById(`groupSchedA_${g}_${i}_${j}`);
+      const inputB = document.getElementById(`groupSchedB_${g}_${i}_${j}`);
+      const inputYA = document.getElementById(`groupSchedYA_${g}_${i}_${j}`);
+      const inputYB = document.getElementById(`groupSchedYB_${g}_${i}_${j}`);
+      const inputRA = document.getElementById(`groupSchedRA_${g}_${i}_${j}`);
+      const inputRB = document.getElementById(`groupSchedRB_${g}_${i}_${j}`);
+      saveGroupMatch(g, i, j, inputA?.value, inputB?.value, inputYA?.value, inputYB?.value, inputRA?.value, inputRB?.value);
     }
 
     function recalculateGroup(g){
       state.groups[g].forEach(t => {
-        t.played = 0; t.points = 0; t.gf = 0; t.ga = 0;
+        t.played = 0; t.points = 0; t.gf = 0; t.ga = 0; t.yellowCards = 0; t.redCards = 0;
       });
 
       for(let i = 0; i < state.groups[g].length; i++){
@@ -2232,9 +3703,13 @@
           const B = state.groups[g][j];
           const a = rs.a;
           const b = rs.b;
+          const yellowA = Math.max(0, Number(rs.yellowA) || 0);
+          const yellowB = Math.max(0, Number(rs.yellowB) || 0);
+          const redA = Math.max(0, Number(rs.redA) || 0);
+          const redB = Math.max(0, Number(rs.redB) || 0);
           A.played++; B.played++;
-          A.gf += a; A.ga += b;
-          B.gf += b; B.ga += a;
+          A.gf += a; A.ga += b; A.yellowCards += yellowA; A.redCards += redA;
+          B.gf += b; B.ga += a; B.yellowCards += yellowB; B.redCards += redB;
           if(a > b) A.points += 3;
           else if(b > a) B.points += 3;
           else { A.points += 1; B.points += 1; }
@@ -2258,6 +3733,9 @@
               <th>BT</th>
               <th>BB</th>
               <th>HS</th>
+              <th>TV</th>
+              <th>TĐ</th>
+              <th>Fair Play</th>
               <th>Điểm</th>
             </tr>
           </thead>
@@ -2274,12 +3752,15 @@
             <td>${t.gf}</td>
             <td>${t.ga}</td>
             <td>${t.gf - t.ga}</td>
+            <td>${t.yellowCards || 0}</td>
+            <td>${t.redCards || 0}</td>
+            <td>${getTeamFairPlayPenalty(t)}</td>
             <td>${t.points}</td>
           </tr>
         `;
       });
 
-      html += `</tbody></table>`;
+      html += `</tbody></table><div class="hint" style="margin-top:8px;">Xếp hạng phụ vòng bảng: Điểm → Hiệu số → Ít thẻ hơn xếp trên (Fair Play = Thẻ vàng + 2 × thẻ đỏ) → Bàn thắng → Seed.</div>`;
       document.getElementById(`groupTable_${g}`).innerHTML = html;
       renderAllStandings();
     }
@@ -2299,6 +3780,7 @@
     /* SCHEDULE */
     function buildKnockoutScheduleMatches(){
       if(!state.knockoutTree) return [];
+      applyAdaptiveBracketSizing(state.knockoutTree);
       const layout = computeTreeLayout(state.knockoutTree);
       const codeMap = getDisplayCodeMap(layout);
       const roundMap = collectMatchesByRound(state.knockoutTree, {});
@@ -2323,87 +3805,111 @@
       return matches;
     }
 
-    function buildGroupScheduleMatches(){
-      const matches = [];
-      state.groups.forEach((group, g) => {
-        for(let i = 0; i < group.length; i++){
-          for(let j = i + 1; j < group.length; j++){
-            matches.push({ phase:`Bảng ${String.fromCharCode(65 + g)}`, teamA:group[i].name, teamB:group[j].name });
+    function buildGroupRoundRobinRounds(){
+      const groupRoundSets = (state.groups || []).map((group, g) => {
+        const baseIndexes = group.map((_, idx) => idx);
+        if(baseIndexes.length < 2) return [];
+
+        const rotating = [...baseIndexes];
+        if(rotating.length % 2 === 1) rotating.push(null);
+
+        const roundCount = Math.max(rotating.length - 1, 0);
+        const half = rotating.length / 2;
+        const rounds = [];
+
+        for(let roundIndex = 0; roundIndex < roundCount; roundIndex++){
+          const roundMatches = [];
+
+          for(let pairIndex = 0; pairIndex < half; pairIndex++){
+            const left = rotating[pairIndex];
+            const right = rotating[rotating.length - 1 - pairIndex];
+            if(left === null || right === null) continue;
+
+            const teamAIndex = Math.min(left, right);
+            const teamBIndex = Math.max(left, right);
+            const rs = state.results[`group_${g}_${teamAIndex}_${teamBIndex}`] || {};
+
+            roundMatches.push({
+              phase:`Bảng ${String.fromCharCode(65 + g)}`,
+              roundIndex: roundIndex + 1,
+              roundLabel:`Lượt trận ${roundIndex + 1}`,
+              teamA:group[teamAIndex].name,
+              teamB:group[teamBIndex].name,
+              groupIndex:g,
+              teamAIndex,
+              teamBIndex,
+              scoreA:Number.isFinite(rs.a) ? rs.a : '',
+              scoreB:Number.isFinite(rs.b) ? rs.b : '',
+              yellowA:Number.isFinite(rs.yellowA) ? rs.yellowA : 0,
+              yellowB:Number.isFinite(rs.yellowB) ? rs.yellowB : 0,
+              redA:Number.isFinite(rs.redA) ? rs.redA : 0,
+              redB:Number.isFinite(rs.redB) ? rs.redB : 0
+            });
           }
+
+          rounds.push(roundMatches);
+
+          const fixed = rotating[0];
+          const rest = rotating.slice(1);
+          rest.unshift(rest.pop());
+          rotating.splice(0, rotating.length, fixed, ...rest);
         }
+
+        return rounds;
       });
-      return matches;
+
+      const maxRounds = groupRoundSets.reduce((max, rounds) => Math.max(max, rounds.length), 0);
+      const mergedRounds = [];
+
+      for(let roundIndex = 0; roundIndex < maxRounds; roundIndex++){
+        const roundMatches = [];
+        groupRoundSets.forEach(rounds => {
+          if(rounds[roundIndex]?.length){
+            roundMatches.push(...rounds[roundIndex]);
+          }
+        });
+        if(roundMatches.length) mergedRounds.push(roundMatches);
+      }
+
+      return mergedRounds;
     }
 
     function generateSchedule(){
       syncInfoDataFromMain();
-      const startValue = document.getElementById('startTime').value;
+      syncLegacyStartTime();
       const duration = Math.max(1, parseInt(document.getElementById('matchDuration').value) || 20);
       const breakMin = Math.max(0, parseInt(document.getElementById('breakDuration').value) || 0);
       const courts = Math.max(1, parseInt(document.getElementById('courtCount').value) || 1);
 
-      if(!startValue){
-        document.getElementById('schedule').innerHTML = `<div class="empty">Hãy chọn thời gian bắt đầu để xếp lịch.</div>`;
+      try{
+        if(state.format === 'knockout'){
+          if(!state.knockoutTree){
+            document.getElementById('schedule').innerHTML = `<div class="empty">Chưa tạo nhánh loại trực tiếp.</div>`;
+            return;
+          }
+          const matches = buildKnockoutScheduleMatches();
+          const grouped = {};
+          matches.forEach(m => {
+            if(!grouped[m.roundNo]) grouped[m.roundNo] = [];
+            grouped[m.roundNo].push(m);
+          });
+          const roundNumbers = Object.keys(grouped).map(Number).sort((a, b) => a - b);
+          state.schedule = scheduleRoundMatchesSequentially(roundNumbers.map(roundNo => grouped[roundNo]), duration, breakMin, courts);
+        }else{
+          if(!state.groups.length){
+            document.getElementById('schedule').innerHTML = `<div class="empty">Chưa tạo vòng bảng.</div>`;
+            return;
+          }
+          const groupedRounds = buildGroupRoundRobinRounds();
+          state.schedule = scheduleRoundMatchesSequentially(groupedRounds, duration, breakMin, courts);
+        }
+      }catch(err){
+        document.getElementById('schedule').innerHTML = `<div class="empty">${escapeHtml(err.message || 'Không xếp được lịch thi đấu.')}</div>`;
+        alert(err.message || 'Không xếp được lịch thi đấu.');
         return;
       }
 
-      if(state.format === 'knockout'){
-        if(!state.knockoutTree){ document.getElementById('schedule').innerHTML = `<div class="empty">Chưa tạo nhánh loại trực tiếp.</div>`; return; }
-        const matches = buildKnockoutScheduleMatches();
-        const grouped = {};
-        matches.forEach(m => {
-          if(!grouped[m.roundNo]) grouped[m.roundNo] = [];
-          grouped[m.roundNo].push(m);
-        });
-
-        const roundNumbers = Object.keys(grouped).map(Number).sort((a, b) => a - b);
-        let cursor = new Date(startValue);
-        const schedule = [];
-
-        roundNumbers.forEach(roundNo => {
-          const current = grouped[roundNo];
-          let idx = 0;
-          while(idx < current.length){
-            const batch = current.slice(idx, idx + courts);
-            const startSlot = new Date(cursor);
-            const endSlot = addMinutes(startSlot, duration);
-            batch.forEach((m, k) => {
-              schedule.push({
-                matchId:m.matchId, matchCode:m.matchCode, phase:m.phase, ready:m.ready,
-                scoreA:m.scoreA, scoreB:m.scoreB, start:new Date(startSlot), end:new Date(endSlot),
-                court:`Sân ${k + 1}`, courtNo:(k + 1), teamA:m.teamA, teamB:m.teamB, autoAdvance:m.autoAdvance
-              });
-            });
-            cursor = addMinutes(endSlot, breakMin);
-            idx += courts;
-          }
-        });
-
-        state.schedule = schedule;
-      }else{
-        if(!state.groups.length){ document.getElementById('schedule').innerHTML = `<div class="empty">Chưa tạo vòng bảng.</div>`; return; }
-        const matches = buildGroupScheduleMatches();
-        let idx = 0;
-        let cursor = new Date(startValue);
-        const schedule = [];
-
-        while(idx < matches.length){
-          const batch = matches.slice(idx, idx + courts);
-          const startSlot = new Date(cursor);
-          const endSlot = addMinutes(startSlot, duration);
-          batch.forEach((m, k) => {
-            schedule.push({
-              phase:m.phase, start:new Date(startSlot), end:new Date(endSlot), court:`Sân ${k + 1}`, courtNo:(k + 1),
-              teamA:m.teamA, teamB:m.teamB
-            });
-          });
-          cursor = addMinutes(endSlot, breakMin);
-          idx += courts;
-        }
-
-        state.schedule = schedule;
-      }
-
+      normalizeAllMatchStatuses();
       saveState();
       updateTournamentInfoBar();
       updateMetrics();
@@ -2419,6 +3925,8 @@
         return;
       }
 
+      normalizeAllMatchStatuses();
+
       const sortedMatches = [...state.schedule].sort((a, b) => {
         return new Date(a.start) - new Date(b.start) || getCourtNumber(a.court) - getCourtNumber(b.court);
       });
@@ -2427,9 +3935,20 @@
       sortedMatches.forEach(match => {
         const key = new Date(match.start).getTime();
         if(!slotMap.has(key)){
-          slotMap.set(key, { start:new Date(match.start), end:new Date(match.end), matches:{} });
+          slotMap.set(key, {
+            start:new Date(match.start),
+            end:new Date(match.end),
+            matches:{},
+            roundIndex: Number.isFinite(match.roundIndex) ? match.roundIndex : null,
+            roundNo: Number.isFinite(match.roundNo) ? match.roundNo : null,
+            roundLabel: match.roundLabel || match.phase || ''
+          });
         }
-        slotMap.get(key).matches[getCourtNumber(match.court)] = match;
+        const slot = slotMap.get(key);
+        slot.matches[getCourtNumber(match.court)] = match;
+        if(slot.roundIndex === null && Number.isFinite(match.roundIndex)) slot.roundIndex = match.roundIndex;
+        if(slot.roundNo === null && Number.isFinite(match.roundNo)) slot.roundNo = match.roundNo;
+        if(!slot.roundLabel && (match.roundLabel || match.phase)) slot.roundLabel = match.roundLabel || match.phase || '';
       });
       const slots = [...slotMap.values()].sort((a, b) => a.start - b.start);
 
@@ -2437,10 +3956,10 @@
         <div class="schedule-board-wrap">
           <div class="schedule-board-top">
             <div class="schedule-title-row">
-              <div class="schedule-date-pill">${formatShortDate(slots[0].start)}</div>
+              <div class="schedule-date-pill">${formatShortDate(slots[0].start)}${slots.length ? ` - ${formatShortDate(slots[slots.length - 1].start)}` : ''}</div>
               <div>
                 <div class="schedule-board-title">Lịch thi đấu trên các sân</div>
-                <div class="schedule-board-sub">Nhập tỉ số trực tiếp trên từng ô trận rồi bấm <strong>Lưu tỉ số</strong>. Sơ đồ và bảng xếp hạng sẽ cập nhật tự động.</div>
+                <div class="schedule-board-sub">Xếp lịch theo khoảng ngày bạn chọn. Với <strong>vòng bảng</strong>, mỗi <strong>lượt trận</strong> là một vòng mà các đội chỉ thi đấu <strong>1 trận/lượt</strong>. Bạn có thể chỉnh trực tiếp <strong>ngày giờ thi đấu</strong> trên từng ô trận, rồi nhập tỉ số và bấm <strong>Lưu tỉ số</strong>. <span class="schedule-green-note">Sơ đồ và bảng xếp hạng sẽ cập nhật tự động.</span></div>
               </div>
             </div>
             <div class="schedule-board-filters">
@@ -2448,7 +3967,6 @@
               <select class="status-select" disabled>
                 <option>Tất cả trạng thái</option>
                 <option>Chờ đấu</option>
-                <option>Đang đấu</option>
                 <option>Đã kết thúc</option>
               </select>
             </div>
@@ -2460,8 +3978,43 @@
               ${courtNumbers.map(courtNo => `<div class="schedule-head-cell">Sân ${courtNo}</div>`).join('')}
       `;
 
+      let lastDateLabel = '';
+      let lastRoundKey = '';
+      const slotOrderMap = {};
       slots.forEach((slot, index) => {
-        html += `<div class="schedule-slot-label"><div>${index + 1}</div><div class="small">${formatTimeOnly(slot.start)}</div></div>`;
+        const currentDateLabel = formatDateOnlyDisplay(slot.start);
+        const dateChanged = currentDateLabel !== lastDateLabel;
+        lastDateLabel = currentDateLabel;
+
+        const logicalRound = state.format === 'groups'
+          ? (slot.roundIndex || index + 1)
+          : (slot.roundNo || index + 1);
+        const roundTitle = state.format === 'groups'
+          ? `Lượt trận ${logicalRound}`
+          : (slot.roundLabel || `Lượt trận ${index + 1}`);
+        const roundKey = `${state.format}_${logicalRound}`;
+        slotOrderMap[roundKey] = (slotOrderMap[roundKey] || 0) + 1;
+        const slotOrderInRound = slotOrderMap[roundKey];
+
+        if(roundKey !== lastRoundKey){
+          html += `
+          <div class="schedule-round-row">
+            <div class="schedule-round-chip">
+              <span>${roundTitle}</span>
+              <span class="muted">${currentDateLabel} • ${formatTimeOnly(slot.start)} - ${formatTimeOnly(slot.end)}</span>
+            </div>
+          </div>`;
+          lastRoundKey = roundKey;
+        }
+
+        const slotMainLabel = state.format === 'groups'
+          ? `Lượt ${logicalRound}`
+          : `Lượt ${index + 1}`;
+        const slotSmallLabel = state.format === 'groups'
+          ? `Ca ${slotOrderInRound} • ${formatTimeOnly(slot.start)}`
+          : formatTimeOnly(slot.start);
+
+        html += `<div class="schedule-slot-label"><div>${slotMainLabel}</div><div class="small">${slotSmallLabel}</div></div>`;
 
         courtNumbers.forEach(courtNo => {
           const m = slot.matches[courtNo];
@@ -2477,8 +4030,9 @@
             const topClass = scoreReady && scoreA > scoreB ? 'win' : '';
             const bottomClass = scoreReady && scoreB > scoreA ? 'win' : '';
             const currentStatus = getMatchStatus(m);
-            const statusClass = currentStatus === 'finished' ? 'done' : currentStatus === 'bye' ? 'bye' : currentStatus === 'pending' || currentStatus === 'live' ? 'ready' : 'pending';
+            const statusClass = currentStatus === 'finished' ? 'done' : currentStatus === 'bye' ? 'bye' : 'ready';
             const statusKey = getScheduleMatchKey(m);
+            const domKey = makeDomSafeId(statusKey);
             html += `
               <div class="schedule-cell">
                 <div class="schedule-match-card">
@@ -2503,27 +4057,35 @@
                       <span class="schedule-score-sep">-</span>
                       <input ${m.ready ? '' : 'disabled'} type="number" id="schedScoreB_${m.matchId}" value="${scoreReady ? scoreB : ''}">
                     </div>
+                    <div class="schedule-datetime-edit">
+                      <div class="schedule-datetime-field">
+                        <label for="schedStart_${domKey}">Bắt đầu</label>
+                        <input type="datetime-local" id="schedStart_${domKey}" value="${toInputDateTimeValue(new Date(m.start))}">
+                      </div>
+                      <div class="schedule-datetime-field">
+                        <label for="schedEnd_${domKey}">Kết thúc</label>
+                        <input type="datetime-local" id="schedEnd_${domKey}" value="${toInputDateTimeValue(new Date(m.end))}">
+                      </div>
+                      <button class="schedule-date-save" onclick="updateScheduleDateTime('${escapeJsString(statusKey)}','${domKey}')">Lưu giờ</button>
+                    </div>
                     <div class="schedule-card-actions">
                       <span class="status-pill ${statusClass}">${getStatusText(currentStatus)}</span>
-                      <select class="match-status-dropdown" data-match-key="${escapeHtml(statusKey)}" onchange="updateMatchStatus(this)" ${m.autoAdvance ? 'disabled' : ''}>
-                        ${m.autoAdvance
-                          ? '<option value="bye" selected>BYE / Tự động</option>'
-                          : `
-                            <option value="waiting" ${currentStatus === 'waiting' ? 'selected' : ''}>Chờ vòng trước</option>
-                            <option value="pending" ${currentStatus === 'pending' ? 'selected' : ''}>Chờ đấu</option>
-                            <option value="live" ${currentStatus === 'live' ? 'selected' : ''}>Đang đấu</option>
-                            <option value="finished" ${currentStatus === 'finished' ? 'selected' : ''}>Đã kết thúc</option>
-                          `}
-                      </select>
                       <button class="schedule-save-btn" ${m.ready ? '' : 'disabled'} onclick="setKnockoutWinnerFromSchedule('${m.matchId}')">Lưu tỉ số</button>
                     </div>
                   </div>
                 </div>
               </div>`;
           }else{
-            const currentStatus = getMatchStatus(m);
-            const statusClass = currentStatus === 'finished' ? 'done' : currentStatus === 'live' ? 'ready' : 'pending';
+            const groupResult = findGroupResultByMatch(m) || {};
+            const scoreReady = hasNumericScore(m.scoreA, m.scoreB) || hasNumericScore(groupResult.a, groupResult.b);
+            const scoreA = hasNumericScore(m.scoreA, m.scoreB) ? Number(m.scoreA) : (Number.isFinite(groupResult.a) ? groupResult.a : '');
+            const scoreB = hasNumericScore(m.scoreA, m.scoreB) ? Number(m.scoreB) : (Number.isFinite(groupResult.b) ? groupResult.b : '');
+            const topClass = scoreReady && scoreA > scoreB ? 'win' : '';
+            const bottomClass = scoreReady && scoreB > scoreA ? 'win' : '';
+            const currentStatus = getMatchStatus({ ...m, scoreA, scoreB });
+            const statusClass = currentStatus === 'finished' ? 'done' : 'ready';
             const statusKey = getScheduleMatchKey(m);
+            const domKey = makeDomSafeId(statusKey);
             html += `
               <div class="schedule-cell">
                 <div class="schedule-match-card">
@@ -2534,16 +4096,48 @@
                     <div class="schedule-time-tag">${formatTimeOnly(new Date(m.start))}</div>
                   </div>
                   <div class="schedule-match-body">
-                    <div class="schedule-team-row"><div class="schedule-team-name">${escapeHtml(m.teamA)}</div></div>
-                    <div class="schedule-team-row"><div class="schedule-team-name">${escapeHtml(m.teamB)}</div></div>
-                    <div class="schedule-group-note">Nhập tỉ số ở khung <strong>Kết quả / Vòng bảng</strong> bên dưới để bảng xếp hạng tự cập nhật.</div>
+                    <div class="schedule-team-row ${topClass}">
+                      <div class="schedule-team-name">${escapeHtml(m.teamA)}</div>
+                      <div class="schedule-team-score">${scoreReady ? scoreA : '-'}</div>
+                    </div>
+                    <div class="schedule-team-row ${bottomClass}">
+                      <div class="schedule-team-name">${escapeHtml(m.teamB)}</div>
+                      <div class="schedule-team-score">${scoreReady ? scoreB : '-'}</div>
+                    </div>
+                    <div class="schedule-score-edit">
+                      <input type="number" id="groupSchedA_${m.groupIndex}_${m.teamAIndex}_${m.teamBIndex}" value="${scoreReady ? scoreA : ''}">
+                      <span class="schedule-score-sep">-</span>
+                      <input type="number" id="groupSchedB_${m.groupIndex}_${m.teamAIndex}_${m.teamBIndex}" value="${scoreReady ? scoreB : ''}">
+                    </div>
+                    <div class="schedule-card-edit">
+                      <div class="schedule-card-team">
+                        <span class="card-tag yellow">TV ${escapeHtml(m.teamA)}</span>
+                        <input type="number" min="0" id="groupSchedYA_${m.groupIndex}_${m.teamAIndex}_${m.teamBIndex}" value="${m.yellowA ?? 0}">
+                        <span class="card-tag red">TĐ ${escapeHtml(m.teamA)}</span>
+                        <input type="number" min="0" id="groupSchedRA_${m.groupIndex}_${m.teamAIndex}_${m.teamBIndex}" value="${m.redA ?? 0}">
+                      </div>
+                      <div class="schedule-card-team">
+                        <span class="card-tag yellow">TV ${escapeHtml(m.teamB)}</span>
+                        <input type="number" min="0" id="groupSchedYB_${m.groupIndex}_${m.teamAIndex}_${m.teamBIndex}" value="${m.yellowB ?? 0}">
+                        <span class="card-tag red">TĐ ${escapeHtml(m.teamB)}</span>
+                        <input type="number" min="0" id="groupSchedRB_${m.groupIndex}_${m.teamAIndex}_${m.teamBIndex}" value="${m.redB ?? 0}">
+                      </div>
+                    </div>
+                    <div class="schedule-datetime-edit">
+                      <div class="schedule-datetime-field">
+                        <label for="schedStart_${domKey}">Bắt đầu</label>
+                        <input type="datetime-local" id="schedStart_${domKey}" value="${toInputDateTimeValue(new Date(m.start))}">
+                      </div>
+                      <div class="schedule-datetime-field">
+                        <label for="schedEnd_${domKey}">Kết thúc</label>
+                        <input type="datetime-local" id="schedEnd_${domKey}" value="${toInputDateTimeValue(new Date(m.end))}">
+                      </div>
+                      <button class="schedule-date-save" onclick="updateScheduleDateTime('${escapeJsString(statusKey)}','${domKey}')">Lưu giờ</button>
+                    </div>
+                    <div class="schedule-group-note">Nhập tỉ số, thẻ vàng và thẻ đỏ trực tiếp trên ô trận rồi bấm <strong>Lưu tỉ số</strong>. Bảng xếp hạng vòng bảng sẽ cập nhật tự động.</div>
                     <div class="schedule-card-actions">
                       <span class="status-pill ${statusClass}">${getStatusText(currentStatus)}</span>
-                      <select class="match-status-dropdown" data-match-key="${escapeHtml(statusKey)}" onchange="updateMatchStatus(this)">
-                        <option value="pending" ${currentStatus === 'pending' ? 'selected' : ''}>Chờ đấu</option>
-                        <option value="live" ${currentStatus === 'live' ? 'selected' : ''}>Đang đấu</option>
-                        <option value="finished" ${currentStatus === 'finished' ? 'selected' : ''}>Đã kết thúc</option>
-                      </select>
+                      <button class="schedule-save-btn" onclick="saveGroupMatchFromSchedule(${m.groupIndex}, ${m.teamAIndex}, ${m.teamBIndex})">Lưu tỉ số</button>
                     </div>
                   </div>
                 </div>
@@ -2569,8 +4163,9 @@
         MoTa: state.tournamentInfo.description
       }];
 
+      const contentRows = (state.tournamentContents || []).map((item, i) => ({ STT:i + 1, NoiDung:item.name, NhomTuoi:item.ageGroup, TheThuc:getFormatText(item.format || 'knockout'), TrangThai:getContentStatusText(item.status || 'draft'), SoVDV:item.data?.teams?.length || 0, SoTran:item.data?.schedule?.length || 0, GhiChu:item.note || '' }));
       const teamRows = state.teams.map((t, i) => ({ STT:i + 1, Seed:t.seed, Ten:t.name }));
-      const resultRows = Object.keys(state.results).map(key => ({ Tran:key, DiemA:state.results[key].a, DiemB:state.results[key].b }));
+      const resultRows = Object.keys(state.results).map(key => ({ Tran:key, DiemA:state.results[key].a, DiemB:state.results[key].b, TheVangA:state.results[key].yellowA ?? '', TheVangB:state.results[key].yellowB ?? '', TheDoA:state.results[key].redA ?? '', TheDoB:state.results[key].redB ?? '' }));
       const scheduleRows = state.schedule.map((m, i) => ({
         STT:i + 1,
         MaTran:m.matchCode || '',
@@ -2583,10 +4178,11 @@
       }));
       const standingsRows = state.format === 'knockout'
         ? buildKnockoutFinalRows().map((row, i) => ({ STT:i + 1, Hang:row.rank, DanhHieu:row.title, DoiVDV:row.teamName, GhiChu:row.note }))
-        : (state.groups || []).flatMap((group, g) => getSortedGroupStandings(g).map((team, i) => ({ Bang:String.fromCharCode(65 + g), Hang:i + 1, DoiVDV:team.name, Diem:team.points, HieuSo:team.gf - team.ga })));
+        : (state.groups || []).flatMap((group, g) => getSortedGroupStandings(g).map((team, i) => ({ Bang:String.fromCharCode(65 + g), Hang:i + 1, DoiVDV:team.name, Diem:team.points, HieuSo:team.gf - team.ga, TheVang:team.yellowCards || 0, TheDo:team.redCards || 0, FairPlay:getTeamFairPlayPenalty(team) })));
 
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(infoRows), 'ThongTinGiai');
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(contentRows), 'NoiDungGiai');
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(teamRows), 'Teams');
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(resultRows), 'Results');
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(scheduleRows), 'Schedule');
@@ -2628,8 +4224,8 @@
       const target = await prepareBracketExportSurface();
       if(!target){ alert('Không tìm thấy sơ đồ.'); return; }
 
-      const captureWidth = Math.max(target.scrollWidth, target.clientWidth, target.offsetWidth);
-      const captureHeight = Math.max(target.scrollHeight, target.clientHeight, target.offsetHeight);
+      const captureWidth = Math.max(target.clientWidth, target.offsetWidth);
+      const captureHeight = Math.max(target.clientHeight, target.offsetHeight);
 
       try{
         const canvas = await html2canvas(target, {
@@ -2663,8 +4259,8 @@
         return;
       }
 
-      const captureWidth = Math.max(target.scrollWidth, target.clientWidth, target.offsetWidth);
-      const captureHeight = Math.max(target.scrollHeight, target.clientHeight, target.offsetHeight);
+      const captureWidth = Math.max(target.clientWidth, target.offsetWidth);
+      const captureHeight = Math.max(target.clientHeight, target.offsetHeight);
 
       try{
         const canvas = await html2canvas(target, {
@@ -2718,9 +4314,26 @@
     }
 
     function restoreUI(){
+      const now = new Date();
+      const today = formatDateOnly(now);
       if(!document.getElementById('startTime').value){
-        document.getElementById('startTime').value = toInputDateTimeValue(new Date());
+        document.getElementById('startTime').value = toInputDateTimeValue(now);
       }
+      if(document.getElementById('scheduleFromDate') && !document.getElementById('scheduleFromDate').value){
+        document.getElementById('scheduleFromDate').value = today;
+      }
+      if(document.getElementById('scheduleToDate') && !document.getElementById('scheduleToDate').value){
+        document.getElementById('scheduleToDate').value = today;
+      }
+      if(document.getElementById('dailyStartTime') && !document.getElementById('dailyStartTime').value){
+        document.getElementById('dailyStartTime').value = '08:00';
+      }
+      if(document.getElementById('dailyEndTime') && !document.getElementById('dailyEndTime').value){
+        document.getElementById('dailyEndTime').value = '20:00';
+      }
+      syncLegacyStartTime();
+      const contentFormatInput = document.getElementById('contentFormatInput');
+      if(contentFormatInput) contentFormatInput.value = state.format || 'knockout';
       toggleFormatFields();
       renderAllAssets();
       updateMetrics();
@@ -2759,6 +4372,34 @@
 
     document.addEventListener('keydown', function(e){
       if(e.target && e.target.id === 'teamName' && e.key === 'Enter') addTeam();
+      if(e.target && e.target.id === 'contentNameInput' && e.key === 'Enter') addTournamentContent();
+    });
+
+    ['scheduleFromDate','scheduleToDate','dailyStartTime','dailyEndTime'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el){
+        el.addEventListener('change', syncLegacyStartTime);
+      }
+    });
+
+    window.addEventListener('beforeunload', () => {
+      try{
+        saveState();
+        saveAssets();
+      }catch(e){
+        console.warn('Tự lưu trước khi đóng trang không thành công', e);
+      }
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if(document.visibilityState === 'hidden'){
+        try{
+          saveState();
+          saveAssets();
+        }catch(e){
+          console.warn('Tự lưu khi ẩn trang không thành công', e);
+        }
+      }
     });
 
     loadState();
@@ -2770,11 +4411,15 @@
     if(!state.groups) state.groups = [];
     if(!state.knockoutTree) state.knockoutTree = null;
     if(!state.activeTab) state.activeTab = 'tabInfo';
+    if(!state.activeContentId) state.activeContentId = '';
+    if(!state.tournamentContents) state.tournamentContents = [];
+    state.tournamentContents.forEach(ensureContentDataShape);
     if(!state.tournamentInfo){
       state.tournamentInfo = { title:'', sport:'', content:'', ageGroup:'', format:'knockout', description:'' };
     }
 
     renderTeams();
+    renderTournamentContents();
     restoreAppShell();
     restoreUI();
     restoreTournament();
